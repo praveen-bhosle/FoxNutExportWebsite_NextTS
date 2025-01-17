@@ -49,7 +49,7 @@ const page = () => {
    
    element.quality == 'Semi Handpicked' && 
    
-  (  <ProductCard  element={element} />  
+  (  <ProductCard  key={index} element={element} />  
 
 
   )
@@ -79,7 +79,7 @@ const page = () => {
     
 
     ( 
-      <ProductCard  element={element} />  
+      <ProductCard  key={index} element={element} />  
 
 
   ) 
