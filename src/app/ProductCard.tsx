@@ -2,10 +2,10 @@ import React from 'react'
 import { Product } from './Products'
 import Image from 'next/image'
 
-const ProductCard = ( { index  , element } : { index:number  ,element:Product}) => {
+const ProductCard = ( {  element } : { element:Product}) => {
   return (
     <div className='bg-red-100 rounded-lg '>
-        <div key={index} className=' p-2 flex flex-col justify-between'  >  
+        <div  className=' p-2 flex flex-col justify-between'  >  
 
  
     <div className='mb-4 font-bold'> 

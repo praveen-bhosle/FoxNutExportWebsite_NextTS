@@ -1,6 +1,6 @@
 
 import React from 'react'  
-import Image from 'next/image' 
+//import Image from 'next/image' 
 
 //import Link from 'next/link' 
 import Products from './Products' 
@@ -26,7 +26,7 @@ const page = () => {
   Products.map( ( element,index ) =>    
    element.quality == 'Without Handpicked' && 
    
-  (  <ProductCard index={index} element={element} /> 
+  (  <ProductCard key={index}  element={element} /> 
   )
    )
  }
@@ -49,7 +49,7 @@ const page = () => {
    
    element.quality == 'Semi Handpicked' && 
    
-  (  <ProductCard index={index} element={element} />  
+  (  <ProductCard  element={element} />  
 
 
   )
@@ -79,7 +79,7 @@ const page = () => {
     
 
     ( 
-      <ProductCard index={index} element={element} />  
+      <ProductCard  element={element} />  
 
 
   ) 

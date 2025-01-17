@@ -1,4 +1,4 @@
-
+/*
 const Images:string[] = ['/small.webp' , '/small.webp' , '/small.webp','/medium.png','/medium.png','/medium.png','/large.jpg','/large.jpg','/large.jpg','/jumbo.png','/jumbo.png','/jumbo.png']
 
 enum SizeStringEnum {  
@@ -22,6 +22,7 @@ enum SizeEnum {
     ExtraLarge , 
     Jumbo
 }
+    */
 
 export interface Product { 
   
