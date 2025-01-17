@@ -12,6 +12,10 @@ const Footer  = () => {
 
     <Link href={'mailto:ykdevoutexports2024@gmail.com?subject=MakhanaOrderQueries'}> Mail Us </Link>
      
+     <div className='text-sm text-custom-text '> 
+     Email: ykdevoutexports2024@gmail.com<br/> 
+     Contact: +91 7899255947
+     </div>
     
 
     </div> 
