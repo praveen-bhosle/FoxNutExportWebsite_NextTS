@@ -32,12 +32,12 @@ interface Product {
     image: string
 }
  
-let Products: Product[] = [ ] ; 
+const Products: Product[] = [ ] ; 
 
 let count = 0 ; 
 for(let i = 0 ; i< 4 ; i++) {  
     for(let j = 0 ; j<3 ;j++) { 
-      let product:Product = { 
+    const product:Product = { 
     size: SizeEnum[i] , 
     sizeString:SizeStringEnum[i] , 
     quality:QualityEnum[j] , 
