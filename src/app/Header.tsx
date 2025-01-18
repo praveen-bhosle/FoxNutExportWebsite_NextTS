@@ -74,7 +74,10 @@ const Header = () => {
         </div>
 
         <div className='relative bottom-[4px]'>
-          <Link href={'/'}> ... </Link>
+          <Link href={'/'} prefetch={true}>
+            {' '}
+            ...{' '}
+          </Link>
           <Link href={'/'} className='text-sm '>
             YK DEVOUT EXPORTS
           </Link>
