@@ -1,6 +1,4 @@
-'use client'
-
-import type { Metadata } from 'next'
+//import type { Metadata } from 'next'
 //import { Geist, Geist_Mono } from "next/font/google";
 import './globals.css'
 import Footer from './Footer'
@@ -8,10 +6,11 @@ import Header from './Header'
 import Products from './Products'
 import { Product } from './Products'
 
+/*
 export const metadata: Metadata = {
   title: 'YK DEVOUT EXPORTS',
   description: 'We export Fox Nuts/ Makhana'
-}
+}*/
 import { create } from 'zustand'
 
 type Store = {
