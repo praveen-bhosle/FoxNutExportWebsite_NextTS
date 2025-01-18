@@ -6,11 +6,10 @@ import Header from './Header'
 import Products from './Products'
 import { Product } from './Products'
 
-/*
 export const metadata: Metadata = {
-  title: "YK DEVOUT EXPORTS",
-  description: "We export Fox Nuts/ Makhana",
-}; */
+  title: 'YK DEVOUT EXPORTS',
+  description: 'We export Fox Nuts/ Makhana'
+}
 import { create } from 'zustand'
 
 type Store = {
@@ -53,8 +52,8 @@ export const useStore = create<Store>()(set => ({
       )
     })),
   isCartOpen: false,
-  cartOpen: () => set(state => ({ isCartOpen: true })),
-  cartClose: () => set(state => ({ isCartOpen: false }))
+  cartOpen: () => set(() => ({ isCartOpen: true })),
+  cartClose: () => set(() => ({ isCartOpen: false }))
 }))
 
 export default function RootLayout ({
