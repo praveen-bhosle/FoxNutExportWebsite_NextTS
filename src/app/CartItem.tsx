@@ -16,8 +16,8 @@ const CartItem = ({
   const removeFromCart = useStore(state => state.removeFromCart)
   const removeOneFromCart = useStore(state => state.removeOneFromCart)
 
-  let p3_ = p3 * product.quantityAdded
-  let p4 = p3_.toFixed(2)
+  const p3_ = p3 * product.quantityAdded
+  const p4 = p3_.toFixed(2)
 
   return (
     <>

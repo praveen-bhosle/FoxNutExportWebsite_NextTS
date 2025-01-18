@@ -1,9 +1,9 @@
 'use client'
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useStore } from './layout'
-import ProductCard from './ProductCard'
+
 import CartItem from './CartItem'
 
 const Header = () => {
@@ -31,9 +31,9 @@ const Header = () => {
   }
 
   const totalPriceInINR = products.reduce((accumulator, product) => {
-    let p1 = product.price.slice(4)
+    const p1 = product.price.slice(4)
 
-    let p2 = parseFloat(
+    const p2 = parseFloat(
       p1 ? product.price.slice(1, 5) : product.price.slice(1, 4)
     )
 
@@ -44,9 +44,9 @@ const Header = () => {
   }, 0)
 
   function convertToUSD (totalPriceInINR: number): number {
-    let y = totalPriceInINR * 0.012
+    const y = totalPriceInINR * 0.012
 
-    let ans = y.toFixed(2)
+    const ans = y.toFixed(2)
 
     return parseFloat(ans)
   }
@@ -134,13 +134,13 @@ const Header = () => {
           <div>
             {products.map((product, index) => {
               if (product.quantityAdded > 0) {
-                let p1 = product.price.slice(4)
+                const p1 = product.price.slice(4)
 
-                let p2 = parseFloat(
+                const p2 = parseFloat(
                   p1 ? product.price.slice(1, 5) : product.price.slice(1, 4)
                 )
 
-                let p3 = p2 * 0.012
+                const p3 = p2 * 0.012
 
                 return (
                   <CartItem product={product} p2={p2} p3={p3} key={index} />

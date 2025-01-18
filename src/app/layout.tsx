@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   description: "We export Fox Nuts/ Makhana",
 }; */
 import { create } from 'zustand'
-import ProductCard from './ProductCard'
 
 type Store = {
   products: Product[]

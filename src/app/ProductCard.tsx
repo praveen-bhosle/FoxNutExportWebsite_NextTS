@@ -2,7 +2,6 @@
 import React from 'react'
 import Products, { Product } from './Products'
 import Image from 'next/image'
-import { useEffect } from 'react'
 
 import { useStore } from './layout'
 
