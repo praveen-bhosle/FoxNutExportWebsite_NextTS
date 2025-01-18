@@ -25,21 +25,23 @@ enum SizeEnum {
     */
 
 export interface Product { 
-  
+    
+    productId: number ,
     sizeStringA: string  ,
     sizeStringB:string,
     quality: string 
     price:string  ,
-    addedToCard:false  , 
-    quantityAdded: 0  , 
-    image: string
+    addedToCard:boolean  , 
+    quantityAdded: number , 
+    image: string , 
+   
 }
  
 
 
 const Products: Product[] = [
     { 
-      
+      productId:1,
       sizeStringA: '4 Suta' , sizeStringB:  '12mm to 15mm', 
       quality: 'Without Handpicked', 
       price: '₹870 / $14.62', 
@@ -48,7 +50,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:2,
       sizeStringA: '4 Suta Plus', sizeStringB:'12mm above', 
       quality: 'Without Handpicked', 
       price: '₹1130 / $18.98', 
@@ -57,7 +59,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:3,
       sizeStringA: '5 Suta Exclusive', sizeStringB:'15mm to 19mm', 
       quality: 'Without Handpicked', 
       price: '₹1150 / $19.32', 
@@ -66,7 +68,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-       
+       productId:4,
       sizeStringA: '5 Suta Plus', 
       
       sizeStringB:'15mm above', 
@@ -77,7 +79,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:5,
       sizeStringA: '5.5 Suta Plus', sizeStringB:'17mm above',  
 
       quality: 'Without Handpicked', 
@@ -87,7 +89,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-     
+       productId:6,
       sizeStringA: '4 Suta',
 
       sizeStringB:'12mm to 15mm', 
@@ -98,7 +100,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-     
+     productId:7,
       sizeStringA: '4 Suta Plus', sizeStringB:'12mm above', 
       quality: 'Semi Handpicked', 
       price: '₹1180 / $19.82', 
@@ -107,7 +109,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+       productId:8,
       sizeStringA: '5 Suta Exclusive',sizeStringB:'15mm to 19mm', 
       quality: 'Semi Handpicked', 
       price: '₹1210 / $20.33', 
@@ -116,7 +118,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:9,
       sizeStringA: '5 Suta Plus',sizeStringB:'15mm above', 
       quality: 'Semi Handpicked', 
       price: '₹1250 / $21.00', 
@@ -125,7 +127,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-     
+     productId:10,
       sizeStringA: '5.5 Suta Plus',sizeStringB:'17mm above', 
       quality: 'Semi Handpicked', 
       price: '₹1310 / $22.01', 
@@ -134,7 +136,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-     
+     productId:11,
       sizeStringA: '6 Suta Plus',sizeStringB:'19mm above', 
       quality: 'Semi Handpicked', 
       price: '₹1400 / $23.52', 
@@ -143,7 +145,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:12,
       sizeStringA: '6.5 Suta Plus',sizeStringB:'20.5mm above', 
       quality: 'Semi Handpicked', 
       price: '₹1550 / $26.04', 
@@ -152,7 +154,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:13,
       sizeStringA: '4 Suta' ,sizeStringB:' 12mm to 15mm', 
       quality: 'Handpicked', 
       price: '₹950 / $15.96', 
@@ -161,7 +163,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-     
+     productId: 14,
       sizeStringA: '4 Suta Plus' ,sizeStringB:'12mm above', 
       quality: 'Handpicked', 
       price: '₹1225 / $20.58', 
@@ -170,7 +172,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-     
+      productId: 15 ,
       sizeStringA: '5 Suta Exclusive', sizeStringB:'15mm to 19mm', 
       quality: 'Handpicked', 
       price: '₹1250 / $21.00', 
@@ -179,7 +181,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:16 ,
       sizeStringA: '5 Suta Plus',sizeStringB:'15mm above', 
       quality: 'Handpicked', 
       price: '₹1310 / $22.01', 
@@ -188,7 +190,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId: 17 ,
       sizeStringA: '5.5 Suta Plus', sizeStringB:'17mm above', 
       quality: 'Handpicked', 
       price: '₹1350 / $22.68', 
@@ -197,7 +199,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-     
+     productId: 18,
       sizeStringA: '6 Suta Plus' , sizeStringB:'19mm above', 
       quality: 'Handpicked', 
       price: '₹1450 / $24.36', 
@@ -206,7 +208,7 @@ const Products: Product[] = [
       quantityAdded: 0  , 
     },
     { 
-      
+      productId:19,
       sizeStringA: '6.5 Suta Plus' ,sizeStringB: '20.5mm above', 
       quality: 'Handpicked', 
       price: '₹1600 / $26.88', 
@@ -216,6 +218,9 @@ const Products: Product[] = [
     }
   ];
   
+  
+  
+
 
 
 
