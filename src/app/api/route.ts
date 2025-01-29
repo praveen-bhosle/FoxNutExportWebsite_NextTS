@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export async function GET (req: Request) {
+export async function GET () {
   console.log('reached here ')
 
   try {

@@ -11,6 +11,7 @@ const Page = () => {
   const [passwordHidden, setPasswordHidden] = useState(true);
   const [mode, setMode] = useState('email')
   const [phone, setPhone] = useState('');
+  setPasswordHidden(true);
 
   const [stage, setStage] = useState(1);
   const [type_, setType_] = useState('password');
