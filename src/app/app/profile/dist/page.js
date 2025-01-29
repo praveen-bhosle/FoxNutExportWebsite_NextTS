@@ -41,6 +41,7 @@ var react_1 = require("react");
 var layout_1 = require("../layout");
 var link_1 = require("next/link");
 var axios_1 = require("axios");
+var url_1 = require("@/app/url");
 var page = function () {
     var user = layout_1.useStore(function (state) { return state.user; });
     console.log(user);
@@ -74,7 +75,7 @@ var page = function () {
                 case 1:
                     res = _h.sent();
                     if (!res.success) return [3 /*break*/, 3];
-                    return [4 /*yield*/, axios_1["default"].get("http://localhost:3000/api/checkLogged")];
+                    return [4 /*yield*/, axios_1["default"].get(url_1["default"] + "/api/checkLogged")];
                 case 2:
                     _h.sent();
                     _h.label = 3;

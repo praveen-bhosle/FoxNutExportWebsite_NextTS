@@ -40,6 +40,7 @@ exports.__esModule = true;
 var react_1 = require("react");
 var react_2 = require("react");
 var axios_1 = require("axios");
+var url_1 = require("@/app/url");
 var page = function () {
     var _a = react_2.useState(''), email = _a[0], setEmail = _a[1];
     var _b = react_2.useState(''), password = _b[0], setPassword = _b[1];
@@ -63,7 +64,7 @@ var page = function () {
             switch (_a.label) {
                 case 0:
                     setPasswordEmailState('loading');
-                    return [4 /*yield*/, axios_1["default"].post('http://localhost:3000/auth/signin', { email: email, password: password }).then(function (res) { return res.data; })];
+                    return [4 /*yield*/, axios_1["default"].post(url_1["default"] + "/api/auth/signin", { email: email, password: password }).then(function (res) { return res.data; })];
                 case 1:
                     res = _a.sent();
                     if (!res.success) {
@@ -79,7 +80,7 @@ var page = function () {
             switch (_a.label) {
                 case 0:
                     setPasswordPhoneState('loading');
-                    return [4 /*yield*/, axios_1["default"].post('http://localhost:3000/auth/signin', { email: email, password: password }).then(function (res) { return res.data; })];
+                    return [4 /*yield*/, axios_1["default"].post(url_1["default"] + "/api/auth/signin", { email: email, password: password }).then(function (res) { return res.data; })];
                 case 1:
                     res = _a.sent();
                     if (!res.success) {

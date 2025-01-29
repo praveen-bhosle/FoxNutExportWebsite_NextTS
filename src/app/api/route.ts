@@ -2,19 +2,19 @@ import { cookies } from 'next/headers'
 
 import { decrypt } from '../app/lib/session'
 import { encryptCredentials } from '../app/lib/session'
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export async function GET (req: Request) {
-  const cookieStore = await cookies()
-  const value = cookieStore.get('x')
-  const session = cookieStore.get('session')
+  console.log('reached here ')
 
-  if (session) {
-    const decrypted = decrypt(
-      session.toString(),
-      encryptCredentials.key,
-      encryptCredentials.iv
-    )
-    console.log(cookieStore)
-    return Response.json({ msg: 'hi there  ', value, session, decrypted })
+  try {
+    await prisma.$connect()
+
+    return Response.json({ msg: 'hi' })
+  } catch (e) {
+    console.log('Error is' + e)
+    return Response.json({ msg: 'error' })
   }
 }

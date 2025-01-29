@@ -51,17 +51,23 @@ function POST(request) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 10, , 11]);
-                    return [4 /*yield*/, request.json()];
+                    console.log('request came');
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 12, , 13]);
+                    return [4 /*yield*/, request.json()];
+                case 2:
                     parsedRequest = _a.sent();
-                    if (!parsedRequest.email) return [3 /*break*/, 5];
+                    if (!parsedRequest.email) return [3 /*break*/, 7];
+                    return [4 /*yield*/, prisma.$connect()];
+                case 3:
+                    _a.sent();
                     return [4 /*yield*/, prisma.user.findUnique({
                             where: {
                                 email: parsedRequest.email
                             }
                         })];
-                case 2:
+                case 4:
                     user = _a.sent();
                     if (!user) {
                         return [2 /*return*/, server_1.NextResponse.json({
@@ -76,7 +82,7 @@ function POST(request) {
                             })];
                     }
                     return [4 /*yield*/, bcrypt_1["default"].compare(parsedRequest.password, user.password)]; // returns true or false.
-                case 3:
+                case 5:
                     compare = _a.sent() // returns true or false.
                     ;
                     if (!compare) {
@@ -87,7 +93,7 @@ function POST(request) {
                     }
                     sessionObject = session_1.encrypt({ userId: user.id }, session_2.encryptCredentials.key, session_2.encryptCredentials.iv);
                     return [4 /*yield*/, headers_1.cookies()];
-                case 4:
+                case 6:
                     cookieStore = _a.sent();
                     cookieStore.set('session', sessionObject, {
                         httpOnly: true,
@@ -95,14 +101,13 @@ function POST(request) {
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                         sameSite: 'lax'
                     });
-                    server_1.NextResponse.redirect('/');
-                    return [3 /*break*/, 9];
-                case 5: return [4 /*yield*/, prisma.user.findUnique({
+                    return [2 /*return*/, server_1.NextResponse.redirect('/')];
+                case 7: return [4 /*yield*/, prisma.user.findUnique({
                         where: {
                             phone: parsedRequest.phone
                         }
                     })];
-                case 6:
+                case 8:
                     user = _a.sent();
                     if (!user) {
                         return [2 /*return*/, server_1.NextResponse.json({
@@ -117,7 +122,7 @@ function POST(request) {
                             })];
                     }
                     return [4 /*yield*/, bcrypt_1["default"].compare(parsedRequest.password, user.password)]; // returns true or false.
-                case 7:
+                case 9:
                     compare = _a.sent() // returns true or false.
                     ;
                     if (!compare) {
@@ -128,22 +133,20 @@ function POST(request) {
                     }
                     sessionObject = session_1.encrypt({ userId: user.id }, session_2.encryptCredentials.key, session_2.encryptCredentials.iv);
                     return [4 /*yield*/, headers_1.cookies()];
-                case 8:
+                case 10:
                     cookieStore = _a.sent();
                     cookieStore.set('session', sessionObject, {
                         httpOnly: true,
                         secure: false,
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60)
                     });
-                    server_1.NextResponse.redirect('/');
-                    _a.label = 9;
-                case 9: return [3 /*break*/, 11];
-                case 10:
+                    return [2 /*return*/, server_1.NextResponse.redirect('/')];
+                case 11: return [3 /*break*/, 13];
+                case 12:
                     e_1 = _a.sent();
-                    console.log(e_1);
-                    server_1.NextResponse.json({ success: 'false', message: "internal server error. " + e_1 }, { status: 500 });
-                    return [3 /*break*/, 11];
-                case 11: return [2 /*return*/];
+                    console.log("error is " + e_1);
+                    return [2 /*return*/, server_1.NextResponse.json({ success: 'false', message: "internal server error. " + e_1 }, { status: 500 })];
+                case 13: return [2 /*return*/];
             }
         });
     });

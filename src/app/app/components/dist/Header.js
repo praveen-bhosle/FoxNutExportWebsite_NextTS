@@ -43,6 +43,7 @@ var image_1 = require("next/image");
 var layout_1 = require("../layout");
 var CartItem_1 = require("./CartItem");
 var axios_1 = require("axios");
+var url_1 = require("@/app/url");
 var Header = function () {
     var _a;
     var products = layout_1.useStore(function (state) { return state.products; });
@@ -85,7 +86,7 @@ var Header = function () {
                 var res;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, axios_1["default"].get('http://localhost:3000/api/checkLogged')];
+                        case 0: return [4 /*yield*/, axios_1["default"].get(url_1["default"] + "/api/auth/checkLogged")];
                         case 1:
                             res = _a.sent();
                             setUser(res.data);

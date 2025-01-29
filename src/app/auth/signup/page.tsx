@@ -2,14 +2,13 @@
 import React from 'react'
 import { useState, useRef } from 'react'
 import axios from 'axios'
-//import { POST } from '../../api/auth/signup' 
+
 import Image from 'next/image'
 
-import OTP from '../../otp';
-import { send } from 'process'
-import { set } from 'zod'
+
 import Link from 'next/link'
 
+import url from '@/app/url'
 
 
 const page = () => {
@@ -141,7 +140,7 @@ const page = () => {
                     <div className='flex justify-center'>
                       <div className=' text-center mt-4 bg-black  w-[40%] text-white font-bold  rounded-[20px] border-2 cursor-pointer py-[4px] select-none '
                         onClick={async () => {
-                          const response = await axios.post('http://localhost:3000/checkOTP/', { OTP, otpId, email }).then(res => res.data);
+                          const response = await axios.post(`${url}/api/authcheckOTP/`, { OTP, otpId, email }).then(res => res.data);
                           if (response.success === 'true') {
                             setGlobalState('signedUp');
                           }

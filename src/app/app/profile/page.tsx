@@ -3,6 +3,7 @@ import React from 'react'
 import { useStore } from '../layout'
 import Link from 'next/link'
 import axios from 'axios'
+import url from '@/app/url'
 
 
 const page = () => {
@@ -40,7 +41,7 @@ const page = () => {
             const res = await axios.post('/api/createProfile', profileObject).then(res => res.data);
 
             if (res.success) {
-                await axios.get("http://localhost:3000/api/checkLogged");
+                await axios.get(`${url}/api/checkLogged`);
             }
 
         }

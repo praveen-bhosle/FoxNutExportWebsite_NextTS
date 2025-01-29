@@ -91,10 +91,6 @@ export default function RootLayout({
 
   const [i, setI] = useState(0);
 
-  const interval = setInterval(() => {
-    if (i < 1) setI(i => i + 1);
-    clearInterval(interval);
-  }, 200);
 
   return (
     <>

@@ -8,6 +8,8 @@ import CartItem from './CartItem'
 
 import axios from 'axios'
 
+import url from '@/app/url'
+
 const Header = () => {
   const products = useStore(state => state.products)
 
@@ -64,7 +66,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     async function checkIfLogged() {
-      const res = await axios.get('http://localhost:3000/api/checkLogged');
+      const res = await axios.get(`${url}/api/auth/checkLogged`);
 
       setUser(res.data);
 

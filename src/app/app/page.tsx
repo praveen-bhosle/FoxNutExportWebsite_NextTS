@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import Products from './lib/Products'
 import ProductCard from './components/ProductCard'
 import { useSearchParams } from 'next/navigation'
+import axios from 'axios'
+import url from '../url'
 
 const page = () => {
 
@@ -50,6 +52,12 @@ const page = () => {
               (<ProductCard key={index} element={element} />)
             )
           }
+        </div>
+
+        <div onClick={async () => await axios.post(`${url}/api/auth/signin`, { email: 'dmmd', password: 'fff' })}>
+
+
+          Clice
         </div>
       </div>
     </>

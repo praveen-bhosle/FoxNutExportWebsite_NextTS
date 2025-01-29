@@ -40,9 +40,9 @@ exports.__esModule = true;
 var react_1 = require("react");
 var react_2 = require("react");
 var axios_1 = require("axios");
-//import { POST } from '../../api/auth/signup' 
 var image_1 = require("next/image");
 var link_1 = require("next/link");
+var url_1 = require("@/app/url");
 var page = function () {
     var _a = react_2.useState(''), email = _a[0], setEmail = _a[1];
     var _b = react_2.useState(''), password = _b[0], setPassword = _b[1];
@@ -161,7 +161,7 @@ var page = function () {
                                                     var response;
                                                     return __generator(this, function (_a) {
                                                         switch (_a.label) {
-                                                            case 0: return [4 /*yield*/, axios_1["default"].post('http://localhost:3000/checkOTP/', { OTP: OTP, otpId: otpId, email: email }).then(function (res) { return res.data; })];
+                                                            case 0: return [4 /*yield*/, axios_1["default"].post(url_1["default"] + "/api/authcheckOTP/", { OTP: OTP, otpId: otpId, email: email }).then(function (res) { return res.data; })];
                                                             case 1:
                                                                 response = _a.sent();
                                                                 if (response.success === 'true') {

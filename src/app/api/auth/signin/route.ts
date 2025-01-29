@@ -14,10 +14,12 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function POST (request: Request) {
+  console.log('request came')
   try {
     const parsedRequest = await request.json()
 
     if (parsedRequest.email) {
+      await prisma.$connect()
       const user = await prisma.user.findUnique({
         where: {
           email: parsedRequest.email
@@ -62,7 +64,7 @@ export async function POST (request: Request) {
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         sameSite: 'lax'
       })
-      NextResponse.redirect('/')
+      return NextResponse.redirect('/')
     } else {
       const user = await prisma.user.findUnique({
         where: {
@@ -108,11 +110,11 @@ export async function POST (request: Request) {
         secure: false,
         expires: new Date(Date.now() + 7 * 24 * 60 * 60)
       })
-      NextResponse.redirect('/')
+      return NextResponse.redirect('/')
     }
   } catch (e) {
-    console.log(e)
-    NextResponse.json(
+    console.log(`error is ${e}`)
+    return NextResponse.json(
       { success: 'false', message: `internal server error. ${e}` },
       { status: 500 }
     )

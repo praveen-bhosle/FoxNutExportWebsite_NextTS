@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
+import url from '@/app/url'
 
 const page = () => {
   const [email, setEmail] = useState('')
@@ -35,7 +36,7 @@ const page = () => {
   const checkPasswordWithEmail = async () => {
 
     setPasswordEmailState('loading');
-    const res = await axios.post('http://localhost:3000/auth/signin', { email, password }).then(res => res.data);
+    const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
     if (!res.success) {
       setIsError(res.msg);
     }
@@ -45,7 +46,7 @@ const page = () => {
   const checkPasswordWithPhone = async () => {
 
     setPasswordPhoneState('loading');
-    const res = await axios.post('http://localhost:3000/auth/signin', { email, password }).then(res => res.data);
+    const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
     if (!res.success) {
       setIsError(res.msg);
     }
