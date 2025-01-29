@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 import Image from 'next/image'
@@ -12,7 +12,7 @@ import url from '@/app/url'
 import OTP from '@/app/app/components/otp'
 
 
-const page = () => {
+const Page = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState<string>('+91');
@@ -297,7 +297,7 @@ const page = () => {
   }
 }
 
-export default page
+export default Page
 
 
 /* 

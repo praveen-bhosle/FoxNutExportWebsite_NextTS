@@ -25,6 +25,13 @@ const Page = () => {
   const [otpPhone, setOtpPhone] = useState('');
   const [otpEmail, setOtpEmail] = useState('');
 
+  setOtpPhoneState('');
+  console.log(otpPhoneState);
+  console.log(otpEmailState + passwordEmailState + passwordPhoneState + otpPhone + otpEmail);
+
+  setOtpPhone('');
+  setOtpEmail('');
+
 
 
   const [isError, setIsError] = useState('');

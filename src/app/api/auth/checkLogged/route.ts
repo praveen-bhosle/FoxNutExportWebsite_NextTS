@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 import { cookies } from 'next/headers'
-import { NextRequest } from 'next/server'
 import { decrypt } from '@/app/app/lib/session'
 import { encryptCredentials } from '@/app/app/lib/session'
 

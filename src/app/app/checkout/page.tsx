@@ -42,12 +42,13 @@ const Page = () => {
 
   const totalPriceInUSD = convertToUSD(totalPriceInINR)
 
-  useEffect(() => { cartClose() }, []);
+  useEffect(() => { cartClose() },);
 
 
   const [addressObject, setAddressObject] = useState({ address: user.address, city: user.city, state: user.state, country: user.country, zipcode: user.zipcode })
 
   const [gateway, setGateway] = useState('');
+  [console.log) gateway];
 
   return (
     <div className='text-black'>

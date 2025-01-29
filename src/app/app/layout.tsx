@@ -6,7 +6,7 @@ import Footer from '../new/Footer'
 import Header from './components/Header'
 import Products from './lib/Products'
 import { Product } from './lib/Products'
-import Image from 'next/image'
+
 
 /*
 export const metadata: Metadata = {
@@ -89,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
 
-  const [i, setI] = useState(0);
+
 
 
   return (

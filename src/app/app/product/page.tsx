@@ -168,9 +168,9 @@ const Page = () => {
 
                     <div className='grid grid-cols-2 gap-2'>
 
-                        {Products.map(element => {
+                        {Products.map((element, index) => {
                             if (element.quality === quality && element.productId !== productObject.productId) {
-                                return (<ProductCard element={element} />)
+                                return (<ProductCard key={index} element={element} />)
                             }
                             return null;
                         }

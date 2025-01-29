@@ -76,7 +76,6 @@ const Header = () => {
 
 
   },
-    []
   );
 
   const [profileBarOpen, setProfileBarOpen] = useState(false);

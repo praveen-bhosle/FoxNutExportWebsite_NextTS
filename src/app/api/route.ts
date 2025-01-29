@@ -1,7 +1,3 @@
-import { cookies } from 'next/headers'
-
-import { decrypt } from '../app/lib/session'
-import { encryptCredentials } from '../app/lib/session'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()

@@ -45,10 +45,10 @@ const OTP = ({ setPhone }: { setPhone: React.Dispatch<React.SetStateAction<strin
           </div>
 
           <div className='h-[150px] overflow-y-scroll px-2'>
-            {countryCodes.map((element) => {
+            {countryCodes.map((element, index) => {
               if (element[0].toLowerCase().includes(filter.toLowerCase())) {
                 return (
-                  <div className='flex justify-between py-2 hover:bg-[#F0F2F5] rounded-md px-2  text-sm select-none' onClick={
+                  <div key={index} className='flex justify-between py-2 hover:bg-[#F0F2F5] rounded-md px-2  text-sm select-none' onClick={
                     () => {
                       setCountryObject({ country: element[0], code: element[1] });
                       setContainer(false);
