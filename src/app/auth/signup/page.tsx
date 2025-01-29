@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import url from '@/app/url'
+import OTP from '@/app/app/components/otp'
 
 
 const page = () => {
@@ -19,7 +20,7 @@ const page = () => {
   const [globalState, setGlobalState] = useState('initial');
   const [isError, setIsError] = useState('');
   const [finalState, setFinalState] = useState('initial');
-  const [OTP, setOTP] = useState('');
+  const [OTP_, setOTP] = useState('');
   const [otpId, setOtpId] = useState(0);
 
   let verficationButtonStyles = { backgroundColor: "#95A2ED", cursor: 'not-allowed' };
@@ -129,7 +130,7 @@ const page = () => {
                     <div className='mb-2 mx-2 text-lg font-bold text-black'> Enter the six digit  OTP  </div>
                     <div className='flex justify-center'>
                       <div>
-                        <input type='text' value={OTP} onChange={(e) => {
+                        <input type='text' value={OTP_} onChange={(e) => {
                           setOTP(e.target.value);
                         }}
                           className='px-2 py-2 outline-none rounded-md text-xl font-bold text-black w-[100px] '
@@ -188,7 +189,7 @@ const page = () => {
           </div>
           <div className='text-lg  text-black text-center'> Enter Phone Number </div>
           <div className=''>
-            <OTP setPhone={setPhone} />
+            < OTP setPhone={setPhone} />
           </div>
           <br />
           <button
