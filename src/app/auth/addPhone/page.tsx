@@ -9,7 +9,7 @@ import { send } from 'process'
 import { set } from 'zod'
 import Link from 'next/link'
 
-import OTP from '../../otp'
+import OTP from '../../app/components/otp'
 
 const page = () => {
 
