@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -16,8 +16,12 @@ import { useRouter } from 'next/navigation'
 
 
 
-const Page = () => {
+const PageBar = () => {
+
+
+
     const productId = useSearchParams()?.get('productId');
+
     const [index, setIndex] = useState(0);
 
     const addToCart = useStore(state => state.addToCart);
@@ -111,8 +115,6 @@ const Page = () => {
         return (
             <div className='p-2'>
 
-
-
                 <div className='text-xl font-bold '> {productObject.quality}  Makahana </div>
 
                 <div className='text-lg'> Size: {productObject.sizeStringA}  || {productObject.sizeStringB} </div>
@@ -135,35 +137,19 @@ const Page = () => {
                 <div className='font-bold py-2 flex '>
                     <div className='w-[20%]'>  Texture : </div> <div>    <button className='bg-gray-300 rounded-md px-2'>  xyz  </button>  <button className='bg-gray-300 rounded-md px-2'> abc  </button>  <button className='bg-gray-300 rounded-md px-2'> def </button> </div>
                 </div>
-
                 <div className='font-bold py-2 flex '>
                     <div className='w-[20%]'>  Price : </div> <div>  {productObject.price}  </div>
                 </div>
-
                 <div className='py-2 flex justify-center gap-4'>
-
-
-
-
                     <button className='px-4 py-2 bg-black text-white mr-2 rounded-2xl' onClick={() => { addToCart(productObject.productId); cartOpen(); }}>
                         Add to cart
                     </button>
-
-
                     <button className='px-4 py-2  bg-black text-white mr-2 rounded-2xl' onClick={() => { addToCart(productObject.productId); router.replace('/app/checkout') }}     >
                         Buy now
                     </button>
-
-
                 </div>
-
-
-
                 <hr />
-
-
                 <div className='py-4'>
-
                     <div className='font-bold text-2xl'> {quality} Makhana other products </div>
 
                     <div className='grid grid-cols-2 gap-2'>
@@ -176,22 +162,21 @@ const Page = () => {
                         }
                         )}
                     </div>
-
                 </div>
-
             </div>
         )
     }
-
     else {
-
         return <div>
             Invalid query parameters.
         </div>
-
     }
 }
 
-
-
-export default Page  
+export default function Page() {
+    return (
+        <Suspense fallback={<div> Loading... </div>}>
+            <PageBar />
+        </Suspense>
+    )
+} 

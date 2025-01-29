@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import Products from './lib/Products'
 import ProductCard from './components/ProductCard'
 import { useSearchParams } from 'next/navigation'
 import axios from 'axios'
 import url from '../url'
 
-const Page = () => {
+
+const PageBar = () => {
 
 
 
@@ -62,6 +63,16 @@ const Page = () => {
       </div>
     </>
   )
+}
+
+const Page = () => {
+
+  return (
+    <Suspense fallback={<div> Loading... </div>} >
+      <PageBar />
+    </Suspense>
+  )
+
 }
 
 export default Page 
