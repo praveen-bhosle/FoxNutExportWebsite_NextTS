@@ -152,20 +152,20 @@ const Page = () => {
           <div>
             <div className='flex justify-between my-2'><label> Email </label>  {user.email ? <input type='text' required className='text-sm px-2 outline-none  border-2 border-black' disabled /> : <Link href='/auth/signup'> Add email </Link>}  </div>
             <div className='flex justify-between my-2'><label > Phone</label>  {user.phone ? <input type='text' className='text-sm px-2 outline-none  border-2 border-black ' value={user.phone} /> : <Link href='/autn/signup'> Add Phome   </Link>}</div>
-            <div className='flex justify-between my-2'><label htmlFor='address'> Address </label>   <input type='text' required id='address' name='address' className='text-sm px-2 outline-none  border-2 border-black' value={addressObject.address} onChange={(e) => {
+            <div className='flex justify-between my-2'><label htmlFor='address'> Address </label>   <input type='text' required id='address' name='address' className='text-sm px-2 outline-none  border-2 border-black' value={addressObject.address ? addressObject.address : ''} onChange={(e) => {
               setAddressObject({ ...addressObject, address: e.target.value })
             }} /></div>
-            <div className='flex justify-between my-2'><label htmlFor='city'> City  </label>        <input type='text' required id='city' name='city' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.city} onChange={(e) => {
+            <div className='flex justify-between my-2'><label htmlFor='city'> City  </label>        <input type='text' required id='city' name='city' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.city ? addressObject.city : ''} onChange={(e) => {
               setAddressObject({ ...addressObject, city: e.target.value })
             }}
             /> </div>
-            <div className='flex justify-between my-2'><label htmlFor='state'> State    </label>    <input type='text' required id='state' name='state' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.state} onChange={(e) => {
+            <div className='flex justify-between my-2'><label htmlFor='state'> State    </label>    <input type='text' required id='state' name='state' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.state ? addressObject.state : ''} onChange={(e) => {
               setAddressObject({ ...addressObject, state: e.target.value })
             }} /> </div>
-            <div className='flex justify-between my-2'><label htmlFor='country'> Country  </label>  <input type='text' required id='country' name='country' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.country} onChange={(e) => {
+            <div className='flex justify-between my-2'><label htmlFor='country'> Country  </label>  <input type='text' required id='country' name='country' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.country ? addressObject.country : ''} onChange={(e) => {
               setAddressObject({ ...addressObject, country: e.target.value })
             }} /> </div>
-            <div className='flex justify-between my-2'><label htmlFor='pin'> ZIP/PIN Code  </label>  <input type='text' required id='pin' name='pin' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.zipcode} onChange={(e) => {
+            <div className='flex justify-between my-2'><label htmlFor='pin'> ZIP/PIN Code  </label>  <input type='text' required id='pin' name='pin' className='text-sm px-2 outline-none border-2 border-black' value={addressObject.zipcode ? addressObject.zipcode : ''} onChange={(e) => {
               setAddressObject({ ...addressObject, zipcode: e.target.value })
             }} /> </div>
           </div>

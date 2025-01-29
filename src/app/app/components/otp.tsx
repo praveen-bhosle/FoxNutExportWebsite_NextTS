@@ -41,7 +41,7 @@ const OTP = ({ setPhone }: { setPhone: React.Dispatch<React.SetStateAction<strin
           <div className='flex gap-1 mt-[3px] mb-2'>
             <Image width={10} height={10} src='/search.svg' alt='search' />
             <input type='text' className='bg-[#F0F2F5] px-2 py-[2px] text-sm rounded-md  focus:outline-none' value={filter} onChange={(e) => { setFilter(e.target.value) }} />
-            {filter ? <Image width={10} height={10} alt='close' src='/close.svg' onClick={(e) => { setFilter('') }} /> : <Image width={10} height={10} alt='close' src='/close.svg' className='opacity-0' />}
+            {filter ? <Image width={10} height={10} alt='close' src='/close.svg' onClick={() => { setFilter('') }} /> : <Image width={10} height={10} alt='close' src='/close.svg' className='opacity-0' />}
           </div>
 
           <div className='h-[150px] overflow-y-scroll px-2'>
@@ -61,17 +61,21 @@ const OTP = ({ setPhone }: { setPhone: React.Dispatch<React.SetStateAction<strin
               }
               return null;
             }
+
             )
+
             }
           </div>
 
         </div>
+
 
       }
 
     </>
 
   )
+
 }
 
 export default OTP;

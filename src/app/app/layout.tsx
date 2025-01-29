@@ -16,19 +16,19 @@ export const metadata: Metadata = {
 import { create } from 'zustand'
 
 
-interface user {
+export interface user {
   loggedIn: boolean,
-  id?: number,
-  email?: string,
-  phone?: string | undefined,
-  profileCreated?: boolean,
-  firstName?: string
-  lastName?: string
-  address?: string
-  city?: string
-  state?: string
-  country?: string
-  zipcode?: string
+  id?: number | null,
+  email?: string | null,
+  phone?: string | null
+  profileCreated?: boolean | null
+  firstName?: string | null
+  lastName?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  zipcode?: string | null
 }
 
 type Store = {
