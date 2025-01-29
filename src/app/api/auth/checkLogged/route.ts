@@ -41,13 +41,13 @@ export async function GET () {
           return Response.json({ loggedIn: false })
         }
 
-        let user2: user
+        const user2: user = { loggedIn: false }
 
-        user2 = { ...user, loggedIn: false }
+        delete user.password
+
+        Object.assign(user2, user)
 
         user2.loggedIn = true
-
-        delete user2.password
 
         const profile = await prisma.profile.findUnique({
           where: { userID: user.id }
@@ -58,9 +58,10 @@ export async function GET () {
           return Response.json(user2)
         } else {
           const profile2 = profile
+          delete profile2.userID
           user2.profileCreated = true
           Object.assign(user2, profile2)
-          delete user2.userID
+
           return Response.json(user2)
         }
       }
