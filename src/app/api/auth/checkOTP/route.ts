@@ -8,6 +8,9 @@ const prisma = new PrismaClient()
 import { encryptCredentials } from '@/app/app/lib/session'
 
 export async function POST (req: NextRequest) {
+  if (process.env.NODE_ENV === 'production') {
+    return Response.json({ loggedIn: false }, { status: 200 })
+  }
   const { OTP, otpId, email } = await req.json()
   try {
     await prisma.$connect()

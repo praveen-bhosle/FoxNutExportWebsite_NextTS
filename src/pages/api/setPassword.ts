@@ -8,6 +8,9 @@ export default async function setPassword (
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (process.env.NODE_ENV === 'production') {
+    return Response.json({ loggedIn: false }, { status: 200 })
+  }
   const { email, password } = req.body
 
   try {

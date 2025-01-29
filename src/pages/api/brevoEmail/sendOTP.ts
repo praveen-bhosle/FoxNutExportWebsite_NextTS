@@ -16,6 +16,10 @@ export default async function sendOTP (
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (process.env.NODE_ENV === 'production') {
+    return Response.json({ loggedIn: false }, { status: 200 })
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ success: 'false', msg: 'Method not allowed' })
   }
