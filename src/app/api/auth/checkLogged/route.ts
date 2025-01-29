@@ -5,6 +5,25 @@ import { encryptCredentials } from '@/app/app/lib/session'
 
 import { user } from '../../../app/layout'
 
+interface sampleUser {
+  id: number
+  email: string | null | undefined
+  phone: string | null | undefined
+  password: string | null | undefined
+}
+
+interface sampleProfile {
+  phone: string | null
+  lastName: string | null
+  firstName: string | null
+  address: string | null
+  city: string | null
+  state: string | null
+  country: string | null
+  zipcode: string | null
+  userID: number | null | undefined
+}
+
 const prisma = new PrismaClient()
 
 export async function GET () {
@@ -43,7 +62,9 @@ export async function GET () {
 
         const user2: user = { loggedIn: false }
 
-        delete user.password
+        const user3: sampleUser = { ...user }
+
+        delete user3.password
 
         Object.assign(user2, user)
 
@@ -57,7 +78,7 @@ export async function GET () {
           user2.profileCreated = false
           return Response.json(user2)
         } else {
-          const profile2 = profile
+          const profile2: sampleProfile = { ...profile }
           delete profile2.userID
           user2.profileCreated = true
           Object.assign(user2, profile2)
