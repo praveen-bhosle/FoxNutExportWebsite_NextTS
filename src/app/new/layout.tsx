@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import React, { useState } from "react";
 import Image from "next/image";
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
 
     const [i, setI] = useState(0);
 

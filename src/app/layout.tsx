@@ -1,9 +1,8 @@
 'use client'
 import { useRouter, usePathname } from 'next/navigation'
 import './globals.css'
-import Footer from './new/Footer'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+
+import { useEffect } from 'react'
 
 
 
@@ -18,9 +17,14 @@ export default function RootLayout({
   const url = usePathname();
   console.log(url);
 
+  const a = () => {
+    if (url === '/') {
+      router.push('/new');
+    }
+  }
+
   useEffect(
-    url === '/' ?
-      () => { router.push('/new') } : () => { }, []
+    a, []
   )
 
   return (

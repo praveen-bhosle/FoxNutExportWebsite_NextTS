@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 import Link from 'next/link'
 
-const page = () => {
+const Page = () => {
   const products = useStore(state => state.products)
   const cartClose = useStore(state => state.cartClose)
 
@@ -222,7 +222,7 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
 
 
 

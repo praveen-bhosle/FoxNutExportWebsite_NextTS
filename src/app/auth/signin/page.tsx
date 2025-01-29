@@ -2,17 +2,16 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import Image from 'next/image'
+
 import url from '@/app/url'
 
-const page = () => {
+const Page = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordHidden, setPasswordHidden] = useState(true);
   const [mode, setMode] = useState('email')
   const [phone, setPhone] = useState('');
-  const x = email && password;
-  const y = phone && password;
+
   const [stage, setStage] = useState(1);
   const [type_, setType_] = useState('password');
 
@@ -216,4 +215,4 @@ const page = () => {
 
 
 
-export default page; 
+export default Page; 

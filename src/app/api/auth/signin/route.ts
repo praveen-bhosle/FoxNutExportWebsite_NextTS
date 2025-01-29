@@ -1,13 +1,10 @@
-import React from 'react'
 import bcrypt from 'bcrypt'
-import { createSession } from '@/app/app/lib/session'
 
 import { cookies } from 'next/headers'
 
 import { encrypt } from '@/app/app/lib/session'
 import { encryptCredentials } from '@/app/app/lib/session'
 
-const secretKey = process.env.SESSION_SECRET
 import { NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 

@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
-import { hasSubscribers } from 'diagnostics_channel'
 
 const prisma = new PrismaClient()
 
@@ -34,6 +33,7 @@ export default async function setPassword (
 
     return res.status(201).json({ success: 'true' })
   } catch (e) {
+    console.log('Error is' + e)
     return res
       .status(400)
       .json({ success: 'false', msg: 'Internal server error' })

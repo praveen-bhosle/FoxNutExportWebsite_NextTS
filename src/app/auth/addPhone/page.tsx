@@ -2,16 +2,11 @@
 import React from 'react'
 import { useState, useRef } from 'react'
 import axios from 'axios'
-//import { POST } from '../../api/auth/signup' 
-import Image from 'next/image'
 
-import { send } from 'process'
-import { set } from 'zod'
-import Link from 'next/link'
 
 import OTP from '../../app/components/otp'
 
-const page = () => {
+const Page = () => {
 
 
 
@@ -95,4 +90,4 @@ const page = () => {
 }
 
 
-export default page; 
+export default Page; 

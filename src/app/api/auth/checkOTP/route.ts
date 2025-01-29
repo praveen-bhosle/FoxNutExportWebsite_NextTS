@@ -29,8 +29,6 @@ export async function POST (req: NextRequest) {
 
     const id = user.id
 
-    const expiresAt = 24 * 60 * 60 * 1000
-
     const sessionObject = encrypt(
       { id },
       encryptCredentials.key,

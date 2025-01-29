@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import axios from 'axios'
 import url from '../url'
 
-const page = () => {
+const Page = () => {
 
 
 
@@ -64,4 +64,4 @@ const page = () => {
   )
 }
 
-export default page 
+export default Page 

@@ -1,9 +1,4 @@
-import React from 'react'
 import bcrypt from 'bcrypt'
-
-//import { NextApiRequest, NextApiResponse } from 'next'
-
-import NextResponse from 'next/server'
 
 import { PrismaClient } from '@prisma/client'
 
@@ -31,8 +26,7 @@ export async function POST (request: Request) {
     const newUser = await prisma.user.create({
       email: email,
       password: hashedPassword
-    }) // the prisma queries will throw an error  if there was an error while updaing the data.
-
+    })
     return Response.json(
       { success: 'true', msg: 'User created successfully' },
       { status: 100 }

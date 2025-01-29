@@ -2,11 +2,10 @@
 
 import React from 'react'
 
-import Image from 'next/image'
 
 
 
-import Link from 'next/link'
+
 
 import { useRouter } from 'next/navigation'
 
@@ -15,7 +14,7 @@ import { useRouter } from 'next/navigation'
 
 
 
-const page = () => {
+const Page = () => {
 
     const router = useRouter();
 
@@ -115,7 +114,7 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
 
 /*
   <Image src='/handpickedMakhana.jpeg' alt='image' width='100' height='100' />  

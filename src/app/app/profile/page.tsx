@@ -6,7 +6,7 @@ import axios from 'axios'
 import url from '@/app/url'
 
 
-const page = () => {
+const Page = () => {
 
     const user = useStore(state => state.user);
 
@@ -94,4 +94,4 @@ const page = () => {
 }
 
 
-export default page 
+export default Page 

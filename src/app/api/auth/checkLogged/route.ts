@@ -6,7 +6,7 @@ import { encryptCredentials } from '@/app/app/lib/session'
 
 const prisma = new PrismaClient()
 
-export async function GET (req: NextRequest) {
+export async function GET () {
   const cookieStore = await cookies()
   const sessionCookie = cookieStore.get('session')
   console.log(sessionCookie)
@@ -40,7 +40,7 @@ export async function GET (req: NextRequest) {
           return Response.json({ loggedIn: false })
         }
 
-        let user2: { [key: string]: any } = { ...user }
+        const user2: { [key: string]: any } = { ...user }
 
         user2.loggedIn = true
 

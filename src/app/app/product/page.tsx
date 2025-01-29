@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation'
 
 
 
-const page = () => {
+const Page = () => {
     const productId = useSearchParams()?.get('productId');
     const [index, setIndex] = useState(0);
 
@@ -194,4 +194,4 @@ const page = () => {
 
 
 
-export default page  
+export default Page  
