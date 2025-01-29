@@ -3,6 +3,8 @@ import { cookies } from 'next/headers'
 import { decrypt } from '@/app/app/lib/session'
 import { encryptCredentials } from '@/app/app/lib/session'
 
+import { user } from '../../../app/layout'
+
 const prisma = new PrismaClient()
 
 export async function GET () {
@@ -39,7 +41,9 @@ export async function GET () {
           return Response.json({ loggedIn: false })
         }
 
-        const user2: { [key: string]: any } = { ...user }
+        let user2: user
+
+        user2 = { ...user, loggedIn: false }
 
         user2.loggedIn = true
 
