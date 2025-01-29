@@ -122,7 +122,7 @@ const Page = () => {
                         <Image src='/back.svg' alt='' width={20} height={20} />
                     </div>
                     <div className=' border flex justify-between p-4 w-[70%]'>
-                        <img src={imageArray[parseInt(productId) * 4 + index]} alt='' className='w-full aspect-video' />
+                        <Image src={imageArray[parseInt(productId) * 4 + index]} alt='' className='w-full aspect-video' width={300} height={200} />
                     </div>
                     <div className='flex justify-center w-[15%]' onClick={() => setIndex(index => (index + 1) % 4)}>
                         <Image src='/next.svg' alt='' width={20} height={20} />
