@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Products, { Product } from '../lib/Products'
-import Image from 'next/image'
+
 
 import { useStore } from '../layout'
 
