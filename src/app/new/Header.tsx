@@ -11,8 +11,8 @@ const Header = () => {
       </Link>
 
       <div className='flex gap-4 py-2 px-4'>
-        <Link href='/new/auth/signup'> Sign up  </Link>
-        <Link href='/new/auth/signin'> Log in   </Link>
+        <Link href='/auth/signup'> Sign up  </Link>
+        <Link href='/auth/signin'> Log in   </Link>
       </div>
     </div>
   )

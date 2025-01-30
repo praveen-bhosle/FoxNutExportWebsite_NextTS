@@ -55,13 +55,15 @@ const Page = () => {
 
   if (mode === 'email' && globalState !== 'signedUp') {
     return (
-      <div className='flex flex-col justify-center  h-[70vh]  '>
-        <div className='flex justify-center '>
-          <div className='h-[398px]   w-[392px] rounded-xl p-[20px]  bg-[#E9EAF2] flex flex-col justify-between'>
+      <div className=''>
+        <div className='flex justify-center items-center  h-[90vh] mx-[5%] '>
+
+          <div className=' rounded-xl p-2  bg-[#E9EAF2] flex flex-col gap-16 justify-between  '>
             <div className=''>
               <div className='text-2xl font-semibold text-black text-center'>
                 Welcome to <span className='text-[#3F6EEA]'>YKDevoutExports</span>
               </div>
+
               <div className='text-xs font-bold text-center '>
                 Signup to get exclusive products and services!
               </div>
@@ -106,21 +108,24 @@ const Page = () => {
                       setIsError('Internal server error.');
                     }
                   }}
-                  className=' text-white  px-4 py-2 rounded-md w-full bg-[#95A2ED] text-xs'
+
+                  style={{ backgroundColor: email.includes('@') ? '#5826EB' : '#95A2ED' }}
+
+                  className='   text-white  px-4 py-2 rounded-md w-full  text-xs'
                 >
                   {' '}
                   Get verification code{' '}
                 </button>
               </div>
 
-              <div className='mx-[19%] '>
-                <button className='bg-[#5826EB] w-full text-white py-2 px-4 text-sm rounded-md'> Sign up with Phone Number   </button>
-              </div>   </>
+
+              <div className='  bg-[#5826EB] w-full text-white py-2 px-4 text-sm rounded-md text-center font-bold  cursor-pointer'>  Sign up with Phone Number    </div>
+            </>
 
 
               : globalState === 'loading' ?
                 <>
-                  <div className='text-center'> Loading... </div>
+                  <div className='text-center'>  <div className='text-2xl font-bold'> Loading...  </div> </div>
                   <div className='text-[#E9EAF2] select-none'> sampletext  </div>
                 </>
                 :
@@ -173,12 +178,14 @@ const Page = () => {
           )
         }
       </div>
+
     )
   }
   else if (mode === 'phone' && globalState !== 'signedUp') {
-    return (<div className='flex flex-col justify-center  h-[70vh]   '>
-      <div className='flex justify-center '>
-        <div className='h-[398px]   w-[392px] rounded-xl p-[20px]  bg-[#E9EAF2] flex flex-col justify-between'>
+    return (<div className=''>
+      <div className='flex justify-center items-center  h-[90vh] mx-[5%] '>
+
+        <div className=' rounded-xl p-2  bg-[#E9EAF2] flex flex-col gap-16 justify-between '>
           <div className=''>
             <div className='text-2xl font-semibold text-black text-center'>
               Welcome to <span className='text-[#3F6EEA]'>YKDevoutExports</span>
@@ -225,9 +232,10 @@ const Page = () => {
     return (
 
 
-      <div className='flex flex-col justify-center  h-[70vh]   '>
-        <div className='flex justify-center '>
-          <div className='h-[398px]   w-[392px] rounded-xl p-[20px]  bg-[#E9EAF2] flex flex-col justify-between'>
+      <div className=''>
+        <div className='flex justify-center items-center  h-[90vh] mx-[5%] '>
+
+          <div className=' rounded-xl p-2  bg-[#E9EAF2] flex flex-col gap-16 justify-between '>
             <div>
               <div className='text-2xl font-semibold text-black text-center'>
                 Welcome to <span className='text-[#3F6EEA]'>YKDevoutExports</span>

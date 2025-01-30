@@ -36,13 +36,13 @@ const Page = () => {
                         </div>
                         <div className='bg-black p-2 rounded-md cursor-pointer' onClick={() => { router.replace('/app?option=1') }}>
                             <div className='border-white border-2  rounded-md text-white     p-2  bg-[url(/semihandpicked.jpg)] bg-cover bg-center h-[300px]  flex flex-col justify-between '   >
-                                <div className='text-xl font-bold'> Semi Handpicked </div>
+                                <div className='text-xl font-bold'> Semi Handpicked Makhana </div>
                                 <div className='text-xs font-bold'> <span className='bg-black'>  Partially screened for better quality,  semi- </span> <br />   <span className='bg-black'>  handpicked makhana balances affordability and  </span> <br />  <span className='bg-black'>  refinement, delivering a satisfying snacking </span> <br />  <span className='bg-black'>  option.  </span> </div>
                             </div>
                         </div>
                         <div className='bg-black p-2 rounded-md cursor-pointer' onClick={() => { router.replace('/app?option=2') }} >
                             <div className='border-white border-2  rounded-md  text-white   p-2  bg-[url(/handpicked.jpg)] bg-cover  bg-center  h-[300px] flex flex-col justify-between '>
-                                <div className='text-lg font-bold'>  Non Handpicked </div>
+                                <div className='text-lg font-bold'>  Non Handpicked Makhana  </div>
                                 <div className='text-xs font-bold'>  <span className='bg-black'>  Standard quality makhana processed in bulk , </span> <br />   <span className='bg-black'>  offering an economical option with good taste and </span> <br /> <span className='bg-black'>  nutrition for everyday use. </span> </div>
                             </div>
                         </div>

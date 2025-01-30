@@ -1,29 +1,12 @@
 //'use client'
 //import React from 'react'
 
-
+import axios from "axios";
+import { useState } from "react";
+import url from "@/app/url";
 
 const Page = () => {
-  return (
-    <>
-
-    </>
-  )
-}
-
-
-
-
-
-
-
-
-
-export default Page;
-
-
-/* 
- const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordHidden, setPasswordHidden] = useState(true);
   const [mode, setMode] = useState('email')
@@ -50,6 +33,69 @@ export default Page;
   setOtpPhone('');
   setOtpEmail('');
 
+
+  const checkPasswordWithEmail = async () => {
+
+    setPasswordEmailState('loading');
+    const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
+    if (!res.success) {
+      setIsError(res.msg);
+    }
+
+  }
+
+  const checkPasswordWithPhone = async () => {
+
+    setPasswordPhoneState('loading');
+    const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
+    if (!res.success) {
+      setIsError(res.msg);
+    }
+
+  }
+
+  const sendOtpToEmail = async () => {
+    setOtpEmailState('loading');
+    try {
+      const res = await axios.post('/api/brevoEmail/sendOTP', { email }).then(res => res.data);
+      if (!res.success) {
+        setIsError(res.msg);
+      }
+      setOtpEmailState('success');
+    }
+    catch (e) {
+      console.log(e);
+      setIsError(JSON.stringify(e));
+    }
+  }
+  const sendOtpToPhone = () => {
+  }
+
+
+
+
+
+
+
+
+  const [isError, setIsError] = useState('');
+
+  setIsError('');
+  return (
+    <> <div className=''>
+      <div className='flex justify-center items-center  h-[90vh] mx-[5%] '>
+
+        <div className=' rounded-xl p-2  bg-[#E9EAF2] flex flex-col gap-16 justify-between  '>
+          <div className=''>
+            <div className='text-2xl font-semibold text-black text-center'>
+              Welcome to <span className='text-[#3F6EEA]'>YKDevoutExports</span>
+            </div>
+            <div className='text-xs font-bold text-center '>
+              Login to get exclusive products and services!
+            </div>
+          </div>
+
+          <div>
 
             {stage === 1 ?
               <div className='flex flex-col gap-2'>
@@ -158,78 +204,33 @@ export default Page;
                         <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToPhone}  > Send OTP </div>
                         <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setStage(2); }}> Go back      </div>
                       </div>
-            }  
-                      
-            
-  const checkPasswordWithEmail = async () => {
-
-    setPasswordEmailState('loading');
-    const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
-    if (!res.success) {
-      setIsError(res.msg);
-    }
-
-  }
-
-  const checkPasswordWithPhone = async () => {
-
-    setPasswordPhoneState('loading');
-    const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
-    if (!res.success) {
-      setIsError(res.msg);
-    }
-
-  }
-
-  const sendOtpToEmail = async () => {
-    setOtpEmailState('loading');
-    try {
-      const res = await axios.post('/api/brevoEmail/sendOTP', { email }).then(res => res.data);
-      if (!res.success) {
-        setIsError(res.msg);
-      }
-      setOtpEmailState('success');
-    }
-    catch (e) {
-      console.log(e);
-      setIsError(JSON.stringify(e));
-    }
-  }
-  const sendOtpToPhone = () => {
-  }
-
-
-
-
-  <div className='flex flex-col justify-center  h-[70vh]  gap-2 '>
-        <div className='flex justify-center   '>
-          <div className=' rounded-xl p-8   bg-[#E9EAF2] flex flex-col  gap-8 justify-between'>
-            <div className=''>
-              <div className='text-2xl font-semibold text-black text-center'>
-                Welcome to <span className='text-[#3F6EEA]'>YKDevoutExports</span>
-              </div>
-              <div className='text-xs font-bold text-center '>
-                Login to get exclusive products and services!
-              </div>
-            </div>
-
-            <div>
-              Database has crashed..
-            </div>
+            }
           </div>
         </div>
-        {
-          isError &&
-          <div className='flex justify-center w-full'>
-            <div className='w-[50%]  text-center  font-bold  rounded-md  text-white text-xl bg-red-500 p-2'>
-              {isError}
-            </div>
-          </div>
-        }
       </div>
+      {
+        isError &&
+        <div className='flex justify-center w-full'>
+          <div className='w-[50%]  text-center  font-bold  rounded-md  text-white text-xl bg-red-500 p-2'>
+            {isError}
+          </div>
+        </div>
+      }
+    </div>
 
-      const [isError, setIsError] = useState('');
 
-  setIsError('');
+    </>
+  )
+}
 
-            */ 
+
+
+
+
+
+
+
+
+export default Page;
+
+

@@ -14,8 +14,9 @@ export default {
         'custom-heading':'#25221E' , 
         'custom-text':'#6F6D6A' ,  
         'custom-subheading':'#25221E' , 
-        'custom-bg':'#FEFDFC' ,
-        'custom-hover':'#EFEDEC'
+        'custom-bg':'#FAFAFA' ,
+        'custom-hover':'#EFEDEC' 
+
 
       },
     },

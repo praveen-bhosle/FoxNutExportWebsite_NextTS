@@ -160,13 +160,13 @@ const Header = () => {
           </Link>
           <Link
             className='block w-[90vw] px-2 py-1 hover:bg-custom-hover text-custom-subheading my-2  rounded-md'
-            href={'/auth/signin'}
+            href={''}
           >
             My orders
           </Link>
           <Link
             className='block w-[90vw] px-2 py-1 hover:bg-custom-hover text-custom-subheading my-2  rounded-md'
-            href={'/auth/signin'}
+            href={''}
           >
             My addresses
           </Link>
