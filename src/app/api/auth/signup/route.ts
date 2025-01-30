@@ -5,10 +5,6 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function POST (request: Request) {
-  if (process.env.NODE_ENV === 'production') {
-    return Response.json({ loggedIn: false }, { status: 200 })
-  }
-
   try {
     const res = await request.json()
 

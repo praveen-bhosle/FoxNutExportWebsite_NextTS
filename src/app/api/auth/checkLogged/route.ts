@@ -27,10 +27,6 @@ interface sampleProfile {
 const prisma = new PrismaClient()
 
 export async function GET () {
-  if (process.env.NODE_ENV === 'production') {
-    return Response.json({ loggedIn: false }, { status: 200 })
-  }
-
   const cookieStore = await cookies()
   const sessionCookie = cookieStore.get('session')
   console.log(sessionCookie)

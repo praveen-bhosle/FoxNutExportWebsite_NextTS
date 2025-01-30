@@ -3,15 +3,15 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function GET () {
-  if (process.env.NODE_ENV === 'production') {
-    return Response.json({ loggedIn: false }, { status: 200 })
-  }
-  console.log('reached here ')
-
   try {
     await prisma.$connect()
+    const user = await prisma.user.findUnique({
+      where: {
+        email: 'praveen'
+      }
+    })
 
-    return Response.json({ msg: 'hi' })
+    return Response.json({ msg: 'hi', x: user?.id })
   } catch (e) {
     console.log('Error is' + e)
     return Response.json({ msg: 'error' })
