@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
+import axios from 'axios'
 
 
 import OTP from '../../app/components/otp'
@@ -8,8 +9,7 @@ import OTP from '../../app/components/otp'
 const Page = () => {
 
 
-    const [phone, setPhone] = useState('');
-    console.log(phone);
+
 
     const [phone, setPhone] = useState<string>('+91');
 
