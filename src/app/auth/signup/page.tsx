@@ -119,7 +119,7 @@ const Page = () => {
               </div>
 
 
-              <div className='  bg-[#5826EB] w-full text-white py-2 px-4 text-sm rounded-md text-center font-bold  cursor-pointer'>  Sign up with Phone Number    </div>
+              <Link className='  bg-[#5826EB] w-full text-white py-2 px-4 text-sm rounded-md text-center font-bold  cursor-pointer opacity-0' href={'/'}   >    Sign up with phone instead     </Link>
             </>
 
 

@@ -4,6 +4,7 @@
 import axios from "axios";
 import { useState } from "react";
 import url from "@/app/url";
+import Image from "next/image";
 
 const Page = () => {
   const [email, setEmail] = useState('')
@@ -11,39 +12,24 @@ const Page = () => {
   const [passwordHidden, setPasswordHidden] = useState(true);
   const [mode, setMode] = useState('email')
   const [phone, setPhone] = useState('');
-  setPasswordHidden(true);
-
   const [stage, setStage] = useState(1);
   const [type_, setType_] = useState('password');
-
   const [otpPhoneState, setOtpPhoneState] = useState('initial');
   const [otpEmailState, setOtpEmailState] = useState('initial');
-
   const [passwordEmailState, setPasswordEmailState] = useState('initial');
   const [passwordPhoneState, setPasswordPhoneState] = useState('initial');
-
-
   const [otpPhone, setOtpPhone] = useState('');
   const [otpEmail, setOtpEmail] = useState('');
-
-  setOtpPhoneState('');
-  console.log(otpPhoneState);
-  console.log(otpEmailState + passwordEmailState + passwordPhoneState + otpPhone + otpEmail);
-
-  setOtpPhone('');
-  setOtpEmail('');
+  const [isError, setIsError] = useState('');
 
 
   const checkPasswordWithEmail = async () => {
-
     setPasswordEmailState('loading');
     const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
     if (!res.success) {
       setIsError(res.msg);
     }
-
   }
-
   const checkPasswordWithPhone = async () => {
 
     setPasswordPhoneState('loading');
@@ -51,9 +37,7 @@ const Page = () => {
     if (!res.success) {
       setIsError(res.msg);
     }
-
   }
-
   const sendOtpToEmail = async () => {
     setOtpEmailState('loading');
     try {
@@ -74,17 +58,9 @@ const Page = () => {
 
 
 
-
-
-
-
-  const [isError, setIsError] = useState('');
-
-  setIsError('');
   return (
-    <> <div className=''>
-      <div className='flex justify-center items-center  h-[90vh] mx-[5%] '>
-
+    <div className=''>
+      <div className='flex justify-center items-center  h-[90vh]  '>
         <div className=' rounded-xl p-2  bg-[#E9EAF2] flex flex-col gap-16 justify-between  '>
           <div className=''>
             <div className='text-2xl font-semibold text-black text-center'>
@@ -95,142 +71,95 @@ const Page = () => {
             </div>
           </div>
 
-          <div>
+          {mode === 'email' ? <>
+            <div className='flex flex-col gap-2'>
+              <label className='block  text-xs text-black mb-[2px]' htmlFor='email'>Email </label>
+              <input
+                type='text'
+                placeholder='name@email.com'
+                value={email}
+                onChange={e => {
+                  setEmail(e.target.value)
+                }}
+                className='p-2 outline-none text-xs rounded-md bg-[#DDDEE7] text-black w-full'
+                id='password'
+              />
+              <label className='block  text-black text-xs ' htmlFor='password'>Password</label>
+              <div>
+                <input
+                  value={password}
+                  onChange={e => {
+                    setPassword(e.target.value)
+                  }}
+                  className='outline-none text-xs  rounded-sm bg-[#DDDEE7] text-black w-[90%] p-2'
+                  id='password'
+                  type={passwordHidden ? 'password' : 'text'}
+                />
 
-            {stage === 1 ?
-              <div className='flex flex-col gap-2'>
-                <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setMode('email'); setStage(2) }}> Log in with email </div>
-                <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setMode('phone'); setStage(2) }}> Log in with phone  </div>
+                <span className="w-max  " onClick={() => setPasswordHidden(!passwordHidden)}>  {passwordHidden ? <Image className="inline" src='/eye.svg' alt="" width={20} height={20} /> : <Image alt="" className="inline" src='/eyeclose.svg' width={20} height={20} />}  </span>
               </div>
-              : stage === 2 ?
-                <div className='flex flex-col gap-2'>
-                  <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setType_('password'); setStage(3) }}> Log in using password </div>
-                  <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setType_('otp'); setStage(3); }}> Log in with  OTP      </div>
-                  <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setStage(1); }}> Go back      </div>
-                </div>
-                : type_ === 'password' && mode === 'email' ? <div className='flex flex-col gap-2'>
-                  <label className='block  text-xs text-black mb-[2px]' htmlFor='email'>Email </label>
-                  <input
-                    type='text'
-                    placeholder='name@email.com'
-                    value={email}
-                    onChange={e => {
-                      setEmail(e.target.value)
-                    }}
-                    className='p-2 outline-none text-xs rounded-md bg-[#DDDEE7] text-black w-full'
-                    id='password'
-                  />
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => checkPasswordWithEmail} >
+                Log in
+              </div>
+              <div className="text-center text-lg"> OR </div>
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToEmail}   > Login using   OTP </div>
+            </div>
+            <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer' onClick={() => setMode('phone')}  >  Login using phone number    </div>
+          </>
+            :
+            <>   <div className='flex flex-col gap-2'>
+              <label className='block  text-xs text-black mb-[2px]' htmlFor='phone'>Phone</label>
+              <input
+                type='text'
+                placeholder=''
+                value={phone}
+                onChange={e => {
+                  setEmail(e.target.value)
+                }}
+                className='p-2 outline-none text-xs rounded-md bg-[#DDDEE7] text-black w-full'
+                id='password'
+              />
+              <label className='block  text-black text-xs ' htmlFor='password'>Password</label>
+              <div>
+                <input
+                  value={password}
+                  onChange={e => {
+                    setPassword(e.target.value)
+                  }}
+                  className='outline-none text-xs  rounded-sm bg-[#DDDEE7] text-black w-[90%] p-2'
+                  id='password'
+                  type={passwordHidden ? 'password' : 'text'}
+                />
 
-                  <label className='block  text-black text-xs ' htmlFor='password'>Password</label>
-                  <input
-                    value={password}
-                    onChange={e => {
-                      setPassword(e.target.value)
-                    }}
-                    className='outline-none text-xs  rounded-sm bg-[#DDDEE7] text-black w-full p-2'
-                    id='password'
-                    type={passwordHidden ? 'password' : 'text'}
-                  />
+                <span className="w-max  " onClick={() => setPasswordHidden(!passwordHidden)}>  {passwordHidden ? <Image className="inline" src='/eye.svg' alt="" width={20} height={20} /> : <Image alt="" className="inline" src='/eyeclose.svg' width={20} height={20} />}  </span>
+              </div>
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => checkPasswordWithPhone} >
+                Log in
+              </div>
+              <div className="text-center text-lg"> OR </div>
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToPhone}   > Login using   OTP </div>
+            </div>
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setMode('email') }} >  Login using email    </div>
 
-                  <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => checkPasswordWithEmail} >
-                    Log in
-                  </div>
-                  <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setStage(2); }}> Go back      </div>
-
-                </div>
-
-                  : type_ === 'password' && mode === 'phone' ? <div className='flex flex-col gap-2'>
-                    <label className='block  text-xs text-black mb-[2px]' htmlFor='phone'>Phone  </label>
-                    <input
-                      type='text'
-                      placeholder=''
-                      value={phone}
-                      onChange={e => {
-                        setPhone(e.target.value)
-                      }}
-                      className='p-2 outline-none text-xs rounded-md bg-[#DDDEE7] text-black w-full'
-                      id='phone'
-                    />
-
-                    <label className='block  text-black text-xs ' htmlFor='password'>Password</label>
-                    <input
-                      value={password}
-                      onChange={e => {
-                        setPassword(e.target.value)
-                      }}
-                      className='outline-none text-xs  rounded-sm bg-[#DDDEE7] text-black w-full p-2'
-                      id='password'
-                      type={passwordHidden ? 'password' : 'text'}
-                    />
-
-                    <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => checkPasswordWithPhone} >
-                      Log in
-                    </div>
-                    <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setStage(2); }}> Go back      </div>
-
-                  </div> :
-
-                    type_ === 'otp' && mode === 'email' ?
-
-                      <div className='flex flex-col gap-2'>
-                        <label className='block  text-xs text-black mb-[2px]' htmlFor='email'> Email   </label>
-                        <input
-                          type='text'
-                          placeholder=''
-                          value={email}
-                          onChange={e => {
-                            setEmail(e.target.value)
-                          }}
-                          className='p-2 outline-none text-xs rounded-md bg-[#DDDEE7] text-black w-full'
-                          id='email'
-                        />
-
-                        <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToEmail}   > Send OTP </div>
-                        <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setStage(2); }}> Go back      </div>
-                      </div> :
-
-                      <div className='flex flex-col gap-2'>
-                        <label className='block  text-xs text-black mb-[2px]' htmlFor='phone'>Phone  </label>
-                        <input
-                          type='text'
-                          placeholder=''
-                          value={phone}
-                          onChange={e => {
-                            setPhone(e.target.value)
-                          }}
-                          className='p-2 outline-none text-xs rounded-md bg-[#DDDEE7] text-black w-full'
-                          id='phone'
-                        />
-                        <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToPhone}  > Send OTP </div>
-                        <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setStage(2); }}> Go back      </div>
-                      </div>
-            }
-          </div>
+            </>
+          }
         </div>
+
+        {
+          isError &&
+          <div className='flex justify-center w-full'>
+            <div className='w-[50%]  text-center  font-bold  rounded-md  text-white text-xl bg-red-500 p-2'>
+              {isError}
+
+            </div>
+            <button onClick={() => setIsError('')} className="bg-blue-400  rounded-md">
+              <Image className="" src='/close.svg' alt="" width={20} height={20} />
+            </button>
+          </div>
+        }
       </div>
-      {
-        isError &&
-        <div className='flex justify-center w-full'>
-          <div className='w-[50%]  text-center  font-bold  rounded-md  text-white text-xl bg-red-500 p-2'>
-            {isError}
-          </div>
-        </div>
-      }
     </div>
-
-
-    </>
   )
 }
 
-
-
-
-
-
-
-
-
 export default Page;
-
-

@@ -117,7 +117,7 @@ const Header = () => {
 
         <div className='relative bottom-[4px]'>
           <Link href="/">
-            <Image src='/logo.jpg' alt='logo' width={60} height={50} />
+            <Image src='/logp.jpg' alt='logo' width={60} height={50} />
           </Link>
 
         </div>

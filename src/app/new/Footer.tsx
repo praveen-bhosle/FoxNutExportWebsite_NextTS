@@ -21,8 +21,8 @@ const Footer = () => {
         <div className='col-span-2'>
           <div className='text-xl font-bold'> Contact Us </div>
           <div ><Image src='/call.svg' alt='image' width={20} height={20} className='inline' /> +917899255947   </div>
-          <div className='' > <Image src='/mail.svg' alt='image' width={20} height={20} className='inline' /> ykdevoutexports2024@gmail.com  </div>
-          <div > <Image src='/location.svg' alt='image' width={20} height={20} className='inline' />  Rajendra Nagar, Madhubani Purnea, Purnea,  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purnea,  Purnia- 854301, Bihar, India  </div>
+          <div className='' > <Image src='/mail.svg' alt='image' width={20} height={20} className='inline' /> guruprasadkulkarni@ykdevoutexports.com  </div>
+          <div > <Image src='/location.svg' alt='image' width={20} height={20} className='inline' />  Rajendra Nagar, Madhubani Purnea, Purnea, Purnea, Purnia- 854301, Bihar, India  </div>
         </div>
       </div>
 
@@ -31,9 +31,8 @@ const Footer = () => {
         <div className='w-[60px] h-[60px] hover:bg-[#292929] flex justify-center items-center'><Image src='/yt.svg' alt='image' width={44} height={44} /></div>
         <div className='w-[60px] h-[60px] hover:bg-[#292929] flex justify-center items-center'><Image src='/facebook.svg' alt='image' width={45} height={45} /></div>
         <div className='w-[60px] h-[60px] hover:bg-[#292929] flex justify-center items-center'><Image src='/x.svg' alt='image' width={50} height={50} /></div>
-        <div className='w-[60px] h-[60px] hover:bg-[#292929] flex justify-center items-center'><Link href={'mailto:ykdevoutexports2024@gmail.com?subject=MakhanaOrderQueries'}> <Image src='/mail.svg' alt='mail' width={40} height={40} />  </Link> </div>
+        <div className='w-[60px] h-[60px] hover:bg-[#292929] flex justify-center items-center'><Link href={'mailto:guruprasadkulkarni@ykdevoutexports.com?subject=MakhanaOrderQueries'}> <Image src='/mail.svg' alt='mail' width={40} height={40} />  </Link> </div>
       </div>
-
 
     </div>
   )
