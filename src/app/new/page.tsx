@@ -13,29 +13,28 @@ const Page = () => {
 
         return (
             <>
-                <div className='p-2 flex flex-col gap-8 text-black border-black text-xs sm:text-sm lg:text-md xl:text-lg' >
-                    <div className='text-4xl lg:text-6xl xl:text-8xl font-bold font-mono   ' > Premium Makhana for Local & Global Markets  </div>
+                <div className='p-2 flex flex-col gap-8  text-xs sm:text-sm lg:text-md xl:text-lg' >
+                    <div className='text-4xl lg:text-6xl xl:text-8xl font-bold font-mono  text-custom-heading' > Premium Makhana for Local & Global Markets  </div>
                     <div className='border-[1px] rounded-md bg-white p-2'>
-                        <div className='border-black border-'>
-                            <div className='text-2xl font-bold  text-black mb-2  lg:text-4xl  xl:text-6xl   '> Products </div>
-                            <div className='flex flex-col gap-4  w-full items-center md:grid md:grid-cols-2  lg:grid   lg:grid-cols-3    '>
-                                <div className='bg-black p-2 rounded-md cursor-pointer w-full    aspect-[4/3]  ' onClick={() => router.replace('/app?option=0')}    >
-                                    <div className='border-white border-2  rounded-md  text-yellow-500   p-2 bg-[url(/handpickedMakhana.jpeg)] bg-cover bg-center   h-full   flex flex-col justify-between'  >
-                                        <div className='text-xl font-bold  text-white'>  Handpicked  Makhana </div>
-                                        <div className=' font-bold text-white'>  <span className='bg-black '> Carefully selected for superior quality, handpicked </span> <br /> <span className='bg-black'>  makhana offers unmatched taste, purity, and </span> <br /> <span className='bg-black'>  freshness, ensuring the best snacking and health </span> <span className='bg-black'>  experience.   </span>  </div>
+                        <div className='border-black '>
+                            <div className='text-2xl font-bold  text-black mb-2   lg:text-4xl  xl:text-6xl  text-custom-subheading'> Products </div>
+                            <div className='flex flex-col gap-4  w-full items-center md:grid md:grid-cols-2 md:justify-items-start  md:items-start lg:grid   lg:grid-cols-3'>
+                                <div className='bg-[#FFF5F0] border-[1px] border-[1px] p-2 rounded-md cursor-pointer w-full flex flex-col gap-2 sm:gap-4   ' onClick={() => router.replace('/app?option=0')}    >
+                                    <div className='text-custom-subheading font-bold  text-lg  w-max '>  Handpicked  Makhana </div>
+                                    <div className=' font-bold text-xs '> Carefully selected for superior quality, handpicked makhana offers unmatched taste, purity, and freshness, ensuring the best snacking and health  experience.    </div>
+                                    <Image src='/handpickedMakhana.jpeg' className='rounded-md' width={600} height={400} alt='' />
+                                </div>
+                                <div className='bg-[#F0F8FF] border-[1px] p-2   rounded-md cursor-pointer  w-full   ' onClick={() => { router.replace('/app?option=1') }}>
+                                    <div className='  rounded-md cursor-pointer w-full    aspect-[4/3] flex flex-col gap-2 sm:gap-4    ' onClick={() => router.replace('/app?option=0')}    >
+                                        <div className='text-custom-subheading font-bold  text-lg  w-max '>  Semi Handpicked  Makhana </div>
+                                        <div className=' font-bold text-xs '>  Partially screened for better quality, semi-handpicked makhana balances affordable and refinement , delivering a satisfying snacking option. </div>
+                                        <Image src='/semihandpicked.jpg' className='rounded-md' width={600} height={400} alt='' />
                                     </div>
                                 </div>
-                                <div className='bg-black p-2 rounded-md cursor-pointer  w-full  aspect-[4/3] ' onClick={() => { router.replace('/app?option=1') }}>
-                                    <div className='border-white border-2  rounded-md text-white     p-2  bg-[url(/semihandpicked.jpg)] bg-cover bg-center h-full   flex flex-col justify-between '   >
-                                        <div className='text-xl font-bold'> Semi Handpicked Makhana </div>
-                                        <div className='text-xs font-bold'> <span className='bg-black'>  Partially screened for better quality,  semi- </span> <br />   <span className='bg-black'>  handpicked makhana balances affordability and  </span> <br />  <span className='bg-black'>  refinement, delivering a satisfying snacking </span> <br />  <span className='bg-black'>  option.  </span> </div>
-                                    </div>
-                                </div>
-                                <div className='bg-black p-2 rounded-md cursor-pointer w-full   aspect-[4/3] ' onClick={() => { router.replace('/app?option=2') }} >
-                                    <div className='border-white border-2  rounded-md  text-white   p-2  bg-[url(/handpicked.jpg)] bg-cover  bg-center  h-full flex flex-col justify-between '>
-                                        <div className='text-lg font-bold'>  Non Handpicked Makhana  </div>
-                                        <div className='text-xs font-bold'>  <span className='bg-black'>  Standard quality makhana processed in bulk , </span> <br />   <span className='bg-black'>  offering an economical option with good taste and </span> <br /> <span className='bg-black'>  nutrition for everyday use. </span> </div>
-                                    </div>
+                                <div className='bg-[#FFF0F5] border-[1px] p-2 rounded-md cursor-pointer w-full flex flex-col gap-2  sm:gap-4   ' onClick={() => { router.replace('/app?option=2') }} >
+                                    <div className='text-custom-subheading font-bold  text-lg  w-max  '>  Non Handpicked  Makhana </div>
+                                    <div className=' font-bold text-xs'>  Standard quality makhana processed in bulk,offering an economical option with a good taste and nutrition for everyday use.  </div>
+                                    <Image src='/handpicked.jpg' className='rounded-md' width={600} height={400} alt='' />
                                 </div>
                             </div>
                         </div>
@@ -43,7 +42,7 @@ const Page = () => {
 
                     <div className=' flex flex-col gap-8 md:grid md:grid-cols-2 text-xs sm:text-sm lg:text-md'>
                         <div className='border-[1px] bg-white px-4 py-2 rounded-md '>
-                            <div className='font-bold text-lg  sm:text-xl  lg:text-2xl  '>
+                            <div className='font-bold text-custom-subheading text-lg   sm:text-xl  lg:text-2xl  '>
                                 Why Makahana?
                             </div>
                             <div className=''>
@@ -68,14 +67,14 @@ const Page = () => {
                         </div>
 
 
-                        <div className='bg-white px-4 py-2 rounded-md border-[1px] '>
-                            <div className='font-bold  text-lg sm:text-xl md:text-2xl '> Why buy from  us?  </div>
+                        <div className='bg-white px-4 py-2 rounded-md border-[1px]'>
+                            <div className='font-bold text-custom-subheading  text-lg sm:text-xl md:text-2xl '> Why buy from  us?  </div>
                             <div>
                                 <div> <span className='font-bold'> Premium-Quality Makhana:        </span><span>We offer a wide selection of high-quality makhana, available in sizes ranging from 4 mm to over 6.5 mm, catering to various preferences and needs.                     </span></div>
                                 <div> <span className='font-bold'> Variety of Textures and Colors: </span><span>Our makhana is available in different textures and vibrant colors, providing a diverse range of options for all customers.</span></div>
                                 <div> <span className='font-bold'> Handpicked Selection:           </span><span>Whether you prefer machine-picked, handpicked, or semi-handpicked makhana, each product is carefully selected to ensure the highest level of freshness and quality.</span></div>
                                 <div> <span className='font-bold'> Commitment to Organic Practices:</span><span>Our makhana is produced using organic farming methods, ensuring it is grown naturally without the use of harmful chemicals.</span></div>
-                                <div> <span className='font-bold'> Ideal Growing Conditions:       </span><span>Grown in the optimal environmental conditions of Bihar, our makhana benefits from the region{`&apos;`}s perfect climate for high-quality production.</span></div>
+                                <div> <span className='font-bold'> Ideal Growing Conditions:       </span><span>Grown in the optimal environmental conditions of Bihar, our makhana benefits from the  perfect climate  of the region  for high-quality production.</span></div>
                                 <div> <span className='font-bold'> Certified Buisness:         </span> <span> We are a fully certified and licensed business, ensuring quality and trustworthiness in every aspect of our operations. </span> </div>
                                 <div> <span className='font-bold'> Reliable Suppliers:         </span> <span> Our network of trusted suppliers guarantees a consistent supply of premium-quality makhana.</span> </div>
                                 <div> <span className='font-bold'> Global Reach:               </span> <span> We are certified to export our products internationally, ensuring seamless delivery across borders.</span> </div>
@@ -88,8 +87,10 @@ const Page = () => {
                         </div>
                     </div>
 
-                    <div className='bg-white px-4 py-2 rounded-md border-[1px]'>
-                        <div className=' font-bold text-lg sm:text-xl md:text-2xl'>  Certifications  </div>
+
+
+                    <div className='bg-white px-4 py-2 rounded-md border-[1px] '>
+                        <div className=' font-bold text-lg sm:text-xl md:text-2xl text-custom-subheading'>  Certifications  </div>
 
 
                         <span className='font-bold'>  Certificate of Incorporation </span>
@@ -105,7 +106,7 @@ const Page = () => {
                     </div>
 
                     <div className='bg-white px-4 py-2 rounded-md border-[1px]'>
-                        <div className='font-bold  text-lg sm:text-xl md:text-2xl '> Testimonails </div>
+                        <div className='font-bold  text-lg sm:text-xl md:text-2xl  text-custom-subheading'> Testimonails </div>
                         <div>
                             Testimonail..
                         </div>

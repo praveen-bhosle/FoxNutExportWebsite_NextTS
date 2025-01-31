@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <div className='bg-white text-black flex justify-between w-full fixed top-0 left-0'>
+    <div className='bg-white  flex justify-between w-full fixed top-0 left-0'>
 
       <Link href='/' >
         <Image src='/logp.jpeg' alt='' width={50} height={50} />

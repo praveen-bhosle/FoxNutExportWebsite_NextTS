@@ -9,15 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)", 
-        'custom-heading':'#25221E' , 
-        'custom-text':'#6F6D6A' ,  
-        'custom-subheading':'#25221E' , 
+        'custom-heading':'#1A1A1A' , 
+        'custom-text':'#4A4A4A' ,  
+        'custom-subheading':'#2C2C2C' , 
         'custom-bg':'#FAFAFA' ,
-        'custom-hover':'#EFEDEC' 
-
-
+        'custom-hover':'#EFEDEC'
       },
     },
   },

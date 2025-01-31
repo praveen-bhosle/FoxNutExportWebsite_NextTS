@@ -1,35 +1,27 @@
-'use client'
-import { useRouter, usePathname } from 'next/navigation'
 import './globals.css'
+import type { Metadata } from 'next'
+import type { Viewport } from 'next'
 
-import { useEffect } from 'react'
+export const metadata: Metadata = {
+  title: 'YK Devout Exports',
+  description: 'Order premium makhana',
+}
 
-
-
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false
+}
 
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
-
-  const router = useRouter();
-  const url = usePathname();
-  console.log(url);
-
-  const a = () => {
-    if (url === '/') {
-      router.push('/new');
-    }
-  }
-
-  useEffect(
-    a,
-  )
-
   return (
     <html lang='en'>
-      <body className='bg-[#FAFAFA] text-black'>
+      <body className='bg-[#FAFAFA] text-custom-text'>
         <div className='' >
           {children}
         </div>

@@ -7,6 +7,8 @@ import { useStore } from '../layout'
 
 import { useRouter } from 'next/navigation'
 
+import Image from 'next/image'
+
 const ProductCard = ({ element }: { element: Product }) => {
   const addToCart = useStore(set => set.addToCart)
   const cartOpen = useStore(set => set.cartOpen)
@@ -14,19 +16,19 @@ const ProductCard = ({ element }: { element: Product }) => {
   const router = useRouter();
 
   return (
-    <div className='bg-[#2A2A2A]  hover:bg-black rounded-lg   text-white cursor-pointer  h-[30vh] border-white border-2' onClick={() => router.replace(`/app/product?productId=${element.productId}`)}>
-      <div className=' p-2 flex flex-col justify-between h-[100%] gap-2 '>
-        <div className=' font-bold'>
+    <div className='bg-white  p-[1px]   rounded-sm    text-black cursor-pointer  h-[30vh] border-[1px]' onClick={() => router.replace(`/app/product?productId=${element.productId}`)}>
+      <div className=' flex flex-col  h-[100%] '>
+        <div className='font-bold text-sm h-[20%]'>
           <span className='text-md  block'> {element.sizeStringA} </span>
 
           <span className='text-md  block'> {element.sizeStringB} </span>
         </div>
 
-        <div className=' flex justify-center h-[60%] w-[100%]'>
-          <img src={element.image} />
+        <div className=' flex justify-center h-[55%] w-[100%]'>
+          <Image src={element.image} alt='' height={20} width={100} quality={100} />
         </div>
 
-        <div className=''>
+        <div className=' h-[25%]'>
           <span className='text-sm block font-semibold select-none'>
             {' '}
             {element.price}{' '}
@@ -37,7 +39,7 @@ const ProductCard = ({ element }: { element: Product }) => {
               cartOpen()
               console.log(Products)
             }}
-            className='bg-white text-black rounded-[12px] px-2 py-[1px]  w-[100%]'
+            className='bg-black text-white rounded-[12px] px-2 py-[1px]  w-[100%]'
           >
             {' '}
             Add to cart{' '}
