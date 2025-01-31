@@ -7,7 +7,7 @@ const Header = () => {
     <div className='bg-white text-black flex justify-between w-full fixed top-0 left-0'>
 
       <Link href='/' >
-        <Image src='/logp.jpeg' alt='' width={80} height={80} />
+        <Image src='/logp.jpeg' alt='' width={50} height={50} />
       </Link>
 
       <div className='flex gap-4 py-2 px-4'>
