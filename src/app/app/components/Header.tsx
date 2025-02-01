@@ -71,11 +71,8 @@ const Header = () => {
       setUser(res.data);
 
     }
-    checkIfLogged().then(() => console.log(user));
-
-
-
-  },
+    checkIfLogged()
+  }, [user.loggedIn, setUser]
   );
 
   const [profileBarOpen, setProfileBarOpen] = useState(false);
@@ -83,23 +80,17 @@ const Header = () => {
 
   return (
     <div className='border  w-full fixed  bg-white  top-[0px] left-[0px] '>
-      <div className='flex justify-between mb-2  align-center mx-4 mt-[9px] h-[30px]     '>
-
-
-        <div className=''>
+      <div className='flex justify-between  mb-2  align-center mx-4 mt-[9px] h-[30px]     '>
+        <div className='flex  gap-4  border-2 border-white'>
           {user.loggedIn ?
             <button className=' rounded-[25px]  overflow-hidden' onClick={
               () => {
                 setProfileBarOpen(!profileBarOpen);
               }
             }>
-
               {profileBarOpen ? <Image src='/close.svg' alt='profile' width={25} height={25} /> : <Image src='/profile1.svg' width={25} height={25} alt='image' />}
-
-
             </button>
             :
-
             <button
               onClick={() => {
                 setIsOpen(prev => !prev)
@@ -112,22 +103,22 @@ const Header = () => {
                 <Image alt='image' src='/menu.svg' width={25} height={25} />
               )}
             </button>}
+          <Link href='/app'> <Image src='/home.svg' alt='home' width={25} height={25} />   </Link>
         </div>
-
-
-        <div className='relative bottom-[4px]'>
-          <Link href="/">
-            <Image src='/logp.jpeg' alt='logo' width={40} height={40} />
-          </Link>
-
+        <div className='flex  gap-2'>
+          <div className='relative bottom-[4px]'>
+            <Link href="/" className=''>
+              <Image src='/logp.jpeg' alt='logo' width={40} height={40} />
+            </Link>
+          </div>
+          <div className='text-black font-bold'>YK Devout Exports</div>
         </div>
         <div className='flex gap-2'>
           <div>
             <button
               onClick={() => {
                 cartOpen()
-              }}
-            >
+              }}>
               <Image src='/cart.svg' alt='cart' width={25} height={25} />
             </button>
             {parseInt(total_) > 0 ? (
@@ -140,10 +131,8 @@ const Header = () => {
               </div>
             )}
           </div>
-
         </div>
       </div>
-
       {isOpen && (
         <div className='m-2'>
           <Link
@@ -174,7 +163,7 @@ const Header = () => {
       )}
 
       {isCartOpen && (
-        <div className='px-4 py-2  rounded-md'>
+        <div className='px-4 py-2  rounded-md z-50'>
           <div className='mb-2  align-center flex'>
             <span className='text-black font-bold mr-2'>
               Shopping Cart {`(${total_})`}
@@ -195,9 +184,7 @@ const Header = () => {
                 const p2 = parseFloat(
                   p1 ? product.price.slice(1, 5) : product.price.slice(1, 4)
                 )
-
-                const p3 = p2 * 0.012
-
+                const p3 = p2 * 0.012;
                 return (
                   <CartItem product={product} p2={p2} p3={p3} key={index} />
                 )
@@ -228,17 +215,20 @@ const Header = () => {
               Hi  {user.firstName?.toUpperCase()}
             </div>
               :
-              <Link href='/profile'  >Create Profile</Link>}
+              <Link href='/profile'>Create Profile</Link>}
           </div>
 
           <div className='w-[90vw] px-2 py-1  hover:bg-custom-hover text-custom-subheading my-2 rounded-md  cursor-pointer'> My orders   </div>
           <div className='w-[90vw] px-2 py-1  hover:bg-custom-hover text-custom-subheading my-2 rounded-md  cursor-pointer'  > Settings </div>
-          <div className=' w-[90vw] px-2 py-1  hover:bg-custom-hover text-custom-subheading my-2 rounded-md cursor-pointer'> Log out  </div>
+          <div className=' w-[90vw] px-2 py-1  hover:bg-custom-hover text-custom-subheading my-2 rounded-md cursor-pointer'
+            onClick={async () => { await axios.put(`${url}/auth/signout`); setUser({ loggedIn: false }) }}
+          > Log out  </div>
         </div>
       )
+
       }
     </div>
   )
 }
 
-export default Header
+export default Header; 

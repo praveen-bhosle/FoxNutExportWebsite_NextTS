@@ -19,7 +19,7 @@ export async function POST (req: NextRequest) {
     if (!verified || verified?.otp != OTP) {
       return NextResponse.json(
         { success: 'false', msg: 'invalid otp' },
-        { status: 400 }
+        { status: 200 }
       )
     }
 
@@ -44,6 +44,8 @@ export async function POST (req: NextRequest) {
       secure: false,
       path: '/'
     })
+
+    console.log(cookieStore)
 
     return NextResponse.json(
       { success: 'true', msg: 'user signed up successfully' },

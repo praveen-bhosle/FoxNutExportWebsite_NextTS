@@ -49,7 +49,7 @@ export default async function sendOTP (
 
     if (user) {
       return res
-        .status(400)
+        .status(200)
         .json({ success: 'false', msg: 'Email is already registered.' })
     }
 

@@ -88,7 +88,9 @@ const Page = () => {
                     setGlobalState('loading');
                     const body = { email }
                     try {
+                      console.log('flow reached here')
                       const res = await axios.post('/api/brevoEmail/sendOTP', body);
+                      console.log(res);
                       const resBody = res.data;
                       console.log(resBody);
                       console.log(res);
@@ -98,6 +100,7 @@ const Page = () => {
                         setIsError('');
                       }
                       else {
+                        console.log('flow reached here');
                         setGlobalState('initial');
                         setIsError(resBody.msg);
                       }
@@ -146,9 +149,10 @@ const Page = () => {
                     <div className='flex justify-center'>
                       <div className=' text-center mt-4 bg-black  w-[40%] text-white font-bold  rounded-[20px] border-2 cursor-pointer py-[4px] select-none '
                         onClick={async () => {
-                          const response = await axios.post(`${url}/api/authcheckOTP/`, { OTP, otpId, email }).then(res => res.data);
+                          const response = await axios.post(`${url}/api/auth/checkOTP/`, { OTP: OTP_, otpId, email }).then(res => res.data);
                           if (response.success === 'true') {
                             setGlobalState('signedUp');
+                            setIsError('');
                           }
                           else {
                             setIsError(response.msg);
@@ -248,10 +252,6 @@ const Page = () => {
             {finalState === 'initial' ?
               <>
                 <div>
-
-
-
-
                   <div className='my-2 text-black'> Enter password </div>
                   <input type='text' className='focus:outline-none px-2 rounded-md' value={password} onChange={(e) => setPassword(e.target.value)} />
                   <div className='text-xs'> Password should follow this pattern:

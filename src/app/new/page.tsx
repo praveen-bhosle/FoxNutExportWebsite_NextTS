@@ -118,9 +118,9 @@ const Page = () => {
 
     else {
         return (
-            <div className='border-2 border-black p-2'  >
+            <div className='border-2 border-black p-2   m-2'  >
                 <button className='cursor-pointer' onClick={() => setImageVisible(false)}>  <Image src='/close.svg' alt='' width={20} height={20} />  </button>
-                <img style={{ objectFit: 'contain' }} src='/certificate1.png' alt='' />
+                <Image src='/certificate1.png' alt='certificateImage' width={2000} height={900} quality={100} />
             </div>)
     }
 }

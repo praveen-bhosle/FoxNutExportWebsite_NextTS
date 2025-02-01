@@ -2,7 +2,6 @@
 import React from 'react'
 import Products, { Product } from '../lib/Products'
 
-
 import { useStore } from '../layout'
 
 import { useRouter } from 'next/navigation'
@@ -17,7 +16,7 @@ const ProductCard = ({ element }: { element: Product }) => {
 
   return (
     <div className='bg-white  p-[1px]   rounded-sm    text-black cursor-pointer  h-[30vh] border-[1px]' onClick={() => router.replace(`/app/product?productId=${element.productId}`)}>
-      <div className=' flex flex-col  h-[100%] '>
+      <div className=' flex flex-col  h-[100%] p-2'>
         <div className='font-bold text-sm h-[20%]'>
           <span className='text-md  block'> {element.sizeStringA} </span>
 

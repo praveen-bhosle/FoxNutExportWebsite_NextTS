@@ -57,7 +57,7 @@ export async function GET () {
         })
 
         if (!user) {
-          return Response.json({ loggedIn: false })
+          return Response.json({ loggedIn: false }, { status: 200 })
         }
 
         const user2: user = { loggedIn: false }
@@ -76,21 +76,21 @@ export async function GET () {
 
         if (!profile) {
           user2.profileCreated = false
-          return Response.json(user2)
+          return Response.json(user2, { status: 200 })
         } else {
           const profile2: sampleProfile = { ...profile }
           delete profile2.userID
           user2.profileCreated = true
           Object.assign(user2, profile2)
 
-          return Response.json(user2)
+          return Response.json(user2, { status: 200 })
         }
       }
     } catch (e) {
       console.log('Error is' + e)
-      return Response.json({ loggedIn: false })
+      return Response.json({ loggedIn: false }, { status: 200 })
     }
   } else {
-    return Response.json({ loggedIn: false })
+    return Response.json({ loggedIn: false }, { status: 200 })
   }
 }
