@@ -8,6 +8,17 @@ const prisma = new PrismaClient()
 import { encryptCredentials } from '@/app/app/lib/session'
 
 export async function POST (req: NextRequest) {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      }
+    })
+  }
+
   const { OTP, otpId, email } = await req.json()
   try {
     await prisma.$connect()
