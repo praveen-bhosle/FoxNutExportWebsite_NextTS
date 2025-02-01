@@ -4,7 +4,7 @@ import { decrypt } from '@/app/app/lib/session'
 import { encryptCredentials } from '@/app/app/lib/session'
 
 import { user } from '../../../app/layout'
-import { NextApiRequest } from 'next'
+import { NextRequest } from 'next/server'
 
 interface sampleUser {
   id: number
@@ -27,7 +27,7 @@ interface sampleProfile {
 
 const prisma = new PrismaClient()
 
-export async function GET (req: NextApiRequest) {
+export async function GET (req: NextRequest) {
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 204,
