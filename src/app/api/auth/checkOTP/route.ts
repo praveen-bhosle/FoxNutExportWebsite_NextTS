@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 
 import { encryptCredentials } from '@/app/app/lib/session'
 
-export async function POST (req: NextRequest, response: NextResponse) {
+export async function POST (req: NextRequest) {
   const { OTP, otpId, email } = await req.json()
   try {
     await prisma.$connect()
