@@ -149,6 +149,7 @@ const Page = () => {
                     <div className='flex justify-center'>
                       <div className=' text-center mt-4 bg-black  w-[40%] text-white font-bold  rounded-[20px] border-2 cursor-pointer py-[4px] select-none '
                         onClick={async () => {
+                          setGlobalState('loading')
                           const response = await axios.post(`${url}/api/auth/checkOTP/`, { OTP: OTP_, otpId, email }).then(res => res.data);
                           if (response.success === 'true') {
                             setGlobalState('signedUp');
