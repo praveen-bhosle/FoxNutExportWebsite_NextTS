@@ -27,6 +27,20 @@ interface sampleProfile {
 
 const prisma = new PrismaClient()
 
+export function OPTIONS (request: Request) {
+  return (
+    new Response(JSON.stringify({ status: 'OK' })),
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      }
+    }
+  )
+}
+
 export async function GET () {
   const cookieStore = await cookies()
   const sessionCookie = cookieStore.get('session')
