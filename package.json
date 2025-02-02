@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint" ,
-    "postinstall": "prisma generate" 
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
@@ -19,6 +19,7 @@
     "net": "^1.0.2",
     "next": "15.1.4",
     "next-auth": "^4.24.11",
+    "next-cors": "^1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sib-api-v3-typescript": "^2.2.2",

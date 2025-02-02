@@ -8,17 +8,6 @@ const prisma = new PrismaClient()
 import { encryptCredentials } from '@/app/app/lib/session'
 
 export async function POST (req: NextRequest) {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-      }
-    })
-  }
-
   const { OTP, otpId, email } = await req.json()
   try {
     await prisma.$connect()
@@ -58,7 +47,7 @@ export async function POST (req: NextRequest) {
 
     console.log(cookieStore)
 
-    return NextResponse.json(
+    return Response.json(
       { success: 'true', msg: 'user signed up successfully' },
       {
         status: 200,
@@ -71,7 +60,7 @@ export async function POST (req: NextRequest) {
     )
   } catch (e) {
     console.log(e)
-    return NextResponse.json(
+    return Response.json(
       { success: 'false', msg: 'internal server error' },
       {
         headers: {
