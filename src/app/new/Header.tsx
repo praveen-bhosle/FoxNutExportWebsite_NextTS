@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import axios from 'axios';
-import url from '../url';
 
 const Header = () => {
 
@@ -12,7 +11,7 @@ const Header = () => {
   useEffect(() => {
     const checkLoggedIn = async () => {
       try {
-        const res = await axios.get(`${url}/api/auth/checkLogged`).then(res => res.data);
+        const res = await axios.get('/api/auth/checkLogged').then(res => res.data);
         if (res.loggedIn) {
           setLoggedIn(true);
         }
@@ -38,7 +37,7 @@ const Header = () => {
             <>
               <Link href='/app/profile'> <Image src='/profile.svg' alt='' width={40} height={40} />  </Link>
               <button onClick={async () => {
-                await axios.put(`${url}/api/auth/signout`);
+                await axios.put(`/api/auth/signout`);
                 setLoggedIn(false);
               }} > Log out </button> </>
             :

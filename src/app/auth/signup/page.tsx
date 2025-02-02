@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 import Link from 'next/link'
 
-import url from '@/app/url'
+
 import OTP from '@/app/app/components/otp'
 
 
@@ -89,7 +89,7 @@ const Page = () => {
                     const body = { email }
                     try {
                       console.log('flow reached here')
-                      const res = await axios.post('/api/brevoEmail/sendOTP', body);
+                      const res = await axios.post('/api/auth/sendOTP/', body);
                       console.log(res);
                       const resBody = res.data;
                       console.log(resBody);
@@ -150,7 +150,7 @@ const Page = () => {
                       <div className=' text-center mt-4 bg-black  w-[40%] text-white font-bold  rounded-[20px] border-2 cursor-pointer py-[4px] select-none '
                         onClick={async () => {
                           setGlobalState('loading')
-                          const response = await axios.post(`${url}/api/auth/checkOTP/`, { OTP: OTP_, otpId, email }).then(res => res.data);
+                          const response = await axios.post('/api/auth/checkOTP/', { OTP: OTP_, otpId, email }).then(res => res.data);
                           if (response.success === 'true') {
                             setGlobalState('signedUp');
                             setIsError('');
@@ -165,9 +165,7 @@ const Page = () => {
                     </div>
                   </div>
                   <div>
-                    <button className='w-full text-center bg-[#3E6EEA] p-2 text-white rounded-md  '>
-                      Go back
-                    </button>
+
                   </div>
                 </>
             }
@@ -266,7 +264,7 @@ const Page = () => {
                     <button className='my-2 text-black bg-[#3E6EEA] text-white  px-2 rounded-xl'
                       onClick={async () => {
                         setFinalState('loading');
-                        const res = await axios.post("/api/setPassword", { email, password }).then(response => response.data);
+                        const res = await axios.post("/auth/api/setPassword", { email, password }).then(response => response.data);
                         if (res.success) {
                           setFinalState('final');
                         }
@@ -295,7 +293,7 @@ const Page = () => {
           isError &&
           (<div className='w-[50%] p-2 rounded-md bg-red-500 my-2  text-white mx-[25%]'>
             {
-              isError
+              JSON.stringify(isError)
             }
           </div>
           )

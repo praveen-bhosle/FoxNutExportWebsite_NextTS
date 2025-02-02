@@ -8,7 +8,6 @@ import CartItem from './CartItem'
 
 import axios from 'axios'
 
-import url from '@/app/url'
 
 const Header = () => {
   const products = useStore(state => state.products)
@@ -66,7 +65,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     async function checkIfLogged() {
-      const res = await axios.get(`${url}/api/auth/checkLogged`);
+      const res = await axios.get('/api/auth/checkLogged/');
 
       setUser(res.data);
 
@@ -221,7 +220,7 @@ const Header = () => {
           <div className='w-[90vw] px-2 py-1  hover:bg-custom-hover text-custom-subheading my-2 rounded-md  cursor-pointer'> My orders   </div>
           <div className='w-[90vw] px-2 py-1  hover:bg-custom-hover text-custom-subheading my-2 rounded-md  cursor-pointer'  > Settings </div>
           <div className=' w-[90vw] px-2 py-1  hover:bg-custom-hover text-custom-subheading my-2 rounded-md cursor-pointer'
-            onClick={async () => { await axios.put(`${url}/auth/signout`); setUser({ loggedIn: false }) }}
+            onClick={async () => { await axios.put('/api/auth/signout'); setUser({ loggedIn: false }) }}
           > Log out  </div>
         </div>
       )

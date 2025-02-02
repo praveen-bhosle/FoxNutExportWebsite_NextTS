@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { z } from 'zod'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -12,24 +12,18 @@ const zodEmail = z
   })
   .email('Inalidemail format')
 
-export default async function sendOTP (
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: 'false', msg: 'Method not allowed' })
-  }
-
-  const email = await req.body.email
+export async function POST (req: Request) {
+  const { email } = await req.json()
 
   console.log(email)
 
   const emailZodVerified = zodEmail.safeParse(email)
 
   if (!emailZodVerified.success) {
-    return res
-      .status(400)
-      .json({ success: 'false', msg: emailZodVerified.error })
+    return NextResponse.json(
+      { success: 'false', msg: emailZodVerified.error },
+      { status: 200 }
+    )
   }
 
   console.log('zod parsed email', emailZodVerified.data)
@@ -37,9 +31,10 @@ export default async function sendOTP (
   const BREVO_API_KEY = process.env.BREVO_API_KEY
 
   if (!BREVO_API_KEY) {
-    return res
-      .status(500)
-      .json({ success: 'false', msg: 'internal server error' })
+    return NextResponse.json(
+      { success: 'false', msg: 'internal server error' },
+      { status: 500 }
+    )
   }
 
   try {
@@ -48,9 +43,10 @@ export default async function sendOTP (
     const user = await prisma.user.findUnique({ where: { email: email } })
 
     if (user) {
-      return res
-        .status(200)
-        .json({ success: 'false', msg: 'Email is already registered.' })
+      return NextResponse.json(
+        { success: 'false', msg: 'Email is already registered.' },
+        { status: 200 }
+      )
     }
 
     const url = 'https://api.bravo.com/v3/contacts'
@@ -96,23 +92,29 @@ export default async function sendOTP (
         })
         console.log('otp_ added to database')
 
-        return res.status(200).json({ success: 'true', id: otp_.id })
+        return NextResponse.json(
+          { success: 'true', id: otp_.id },
+          { status: 200 }
+        )
       } else {
         console.error(response.data)
-        return res
-          .status(500)
-          .json({ success: 'false', msg: 'internal server error' })
+        return NextResponse.json(
+          { success: 'false', msg: 'internal server error' },
+          { status: 500 }
+        )
       }
     } else {
       console.error('Brave API Error:', response.status, response.data)
-      return res
-        .status(response.status || 500)
-        .json({ error: 'An error occured during registering the email.' })
+      return NextResponse.json(
+        { error: 'An error occured during registering the email.' },
+        { status: 500 }
+      )
     }
   } catch (e) {
     console.error(e)
-    return res
-      .status(500)
-      .json({ success: 'false', msg: 'internal server error' })
+    return NextResponse.json(
+      { success: 'false', msg: 'internal server error' },
+      { status: 500 }
+    )
   }
 }

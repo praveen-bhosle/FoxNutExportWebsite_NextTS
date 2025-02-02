@@ -1,8 +1,22 @@
-import { type NextRequest } from 'next/server'
+import { PrismaClient } from '@prisma/client'
+import { NextApiRequest } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET (req: NextRequest) {
-  const searchParams = req.nextUrl.searchParams
-  console.log(searchParams)
+const prisma = new PrismaClient()
 
-  return Response.json(searchParams)
+export async function POST (req: NextRequest) {
+  const body = await req.json()
+  try {
+    await prisma.$connect()
+    await prisma.profile.create({
+      data: body
+    })
+    return NextResponse.json({ success: 'true' }, { status: 200 })
+  } catch (e) {
+    console.log(e)
+    return NextResponse.json(
+      { success: 'false', msg: 'Internal server error' },
+      { status: 500 }
+    )
+  }
 }

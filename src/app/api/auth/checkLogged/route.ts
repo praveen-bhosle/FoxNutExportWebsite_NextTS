@@ -4,7 +4,6 @@ import { decrypt } from '@/app/app/lib/session'
 import { encryptCredentials } from '@/app/app/lib/session'
 
 import { user } from '../../../app/layout'
-import { NextRequest } from 'next/server'
 
 interface sampleUser {
   id: number
