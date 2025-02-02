@@ -31,9 +31,17 @@ export async function POST (req: NextRequest) {
     })
 
     if (!verified || verified?.otp != OTP) {
-      return NextResponse.json(
-        { success: 'false', msg: 'invalid otp' },
-        { status: 200 }
+      return new Response(
+        JSON.stringify({ success: 'false', msg: 'invalid otp' }),
+
+        {
+          status: 200,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+          }
+        }
       )
     }
 
@@ -61,8 +69,8 @@ export async function POST (req: NextRequest) {
 
     console.log(cookieStore)
 
-    return Response.json(
-      { success: 'true', msg: 'user signed up successfully' },
+    return new Response(
+      JSON.stringify({ success: 'true', msg: 'user signed up successfully' }),
       {
         status: 200,
         headers: {
@@ -74,8 +82,8 @@ export async function POST (req: NextRequest) {
     )
   } catch (e) {
     console.log(e)
-    return Response.json(
-      { success: 'false', msg: 'internal server error' },
+    return new Response(
+      JSON.stringify({ success: 'false', msg: 'internal server error' }),
       {
         headers: {
           'Access-Control-Allow-Origin': '*',

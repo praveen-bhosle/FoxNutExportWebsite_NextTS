@@ -72,18 +72,14 @@ export async function GET () {
         })
 
         if (!user) {
-          return Response.json(
-            { loggedIn: false },
-            {
-              status: 200,
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods':
-                  'GET, POST, PUT, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-              }
+          return new Response(JSON.stringify({ loggedIn: false }), {
+            status: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+              'Access-Control-Allow-Headers': 'Content-Type, Authorization'
             }
-          )
+          })
         }
 
         const user2: user = { loggedIn: false }
@@ -102,7 +98,7 @@ export async function GET () {
 
         if (!profile) {
           user2.profileCreated = false
-          return Response.json(user2, {
+          return new Response(JSON.stringify(user2), {
             status: 200,
             headers: {
               'Access-Control-Allow-Origin': '*',
@@ -116,7 +112,7 @@ export async function GET () {
           user2.profileCreated = true
           Object.assign(user2, profile2)
 
-          return Response.json(user2, {
+          return new Response(JSON.stringify(user2), {
             status: 200,
             headers: {
               'Access-Control-Allow-Origin': '*',
@@ -128,29 +124,23 @@ export async function GET () {
       }
     } catch (e) {
       console.log('Error is' + e)
-      return Response.json(
-        { loggedIn: false },
-        {
-          status: 200,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-          }
-        }
-      )
-    }
-  } else {
-    return Response.json(
-      { loggedIn: false },
-      {
+      return new Response(JSON.stringify({ loggedIn: false }), {
         status: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type, Authorization'
         }
+      })
+    }
+  } else {
+    return new Response(JSON.stringify({ loggedIn: false }), {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
       }
-    )
+    })
   }
 }
