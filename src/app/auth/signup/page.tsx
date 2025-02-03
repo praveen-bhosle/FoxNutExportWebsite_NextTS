@@ -264,7 +264,7 @@ const Page = () => {
                     <button className='my-2 text-black bg-[#3E6EEA] text-white  px-2 rounded-xl'
                       onClick={async () => {
                         setFinalState('loading');
-                        const res = await axios.post("/auth/api/setPassword", { email, password }).then(response => response.data);
+                        const res = await axios.post("/api/auth/setPassword", { email, password }).then(response => response.data);
                         if (res.success) {
                           setFinalState('final');
                         }
