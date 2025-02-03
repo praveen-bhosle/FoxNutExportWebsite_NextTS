@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import url from "@/app/url";
 import Image from "next/image";
+import { useRouter, } from "next/navigation";
 
 const Page = () => {
   const [email, setEmail] = useState('')
@@ -18,18 +19,26 @@ const Page = () => {
   const [otpEmailState, setOtpEmailState] = useState('initial');
   const [passwordEmailState, setPasswordEmailState] = useState('initial');
   const [passwordPhoneState, setPasswordPhoneState] = useState('initial');
-  const [otpPhone, setOtpPhone] = useState('');
-  const [otpEmail, setOtpEmail] = useState('');
   const [isError, setIsError] = useState('');
+  const [otp, setOtp] = useState('');
+
+
+  const router = useRouter();
 
 
   const checkPasswordWithEmail = async () => {
     setPasswordEmailState('loading');
-    const res = await axios.post(`${url}/api/auth/signin`, { email, password }).then(res => res.data);
+    const res = await axios.post('/api/auth/signin', { email, password }).then(res => res.data);
     if (!res.success) {
       setIsError(res.msg);
+      setPasswordEmailState('initial');
+      return;
     }
+    setPasswordEmailState('success');
+    router.replace('/new');
   }
+
+
   const checkPasswordWithPhone = async () => {
 
     setPasswordPhoneState('loading');
@@ -41,30 +50,31 @@ const Page = () => {
   const sendOtpToEmail = async () => {
     setOtpEmailState('loading');
     try {
-      const res = await axios.post('/api/brevoEmail/sendOTP', { email }).then(res => res.data);
+      const res = await axios.post('/api/auth/sendOTP/', { email }).then(res => res.data);
       if (!res.success) {
         setIsError(res.msg);
+        setOtpEmailState('initial');
+        return;
       }
       setOtpEmailState('success');
+      router.replace('/new');
     }
     catch (e) {
       console.log(e);
       setIsError(JSON.stringify(e));
     }
   }
+
   const sendOtpToPhone = () => {
   }
 
-
-
-
   return (
     <div className=''>
-      <div className='flex justify-center items-center  h-[90vh]  '>
-        <div className=' rounded-xl p-2  bg-[#E9EAF2] flex flex-col gap-16 justify-between  '>
+      <div className='flex flex-col justify-center items-center  h-[90vh]  gap-8'>
+        <div className=' rounded-xl p-2   bg-white border-[1px] flex flex-col gap-16 justify-between  '>
           <div className=''>
-            <div className='text-2xl font-semibold text-black text-center'>
-              Welcome to <span className='text-[#3F6EEA]'>YKDevoutExports</span>
+            <div className='text-2xl font-semibold text-black text-center cursor-pointer' onClick={() => router.replace('/new')}>
+              Welcome to YKDevoutExports
             </div>
             <div className='text-xs font-bold text-center '>
               Login to get exclusive products and services!
@@ -81,7 +91,7 @@ const Page = () => {
                 onChange={e => {
                   setEmail(e.target.value)
                 }}
-                className='p-2 outline-none text-xs rounded-md bg-[#DDDEE7] text-black w-full'
+                className='p-2 outline-none text-xs rounded-md bg-[#E9EAF2] text-black w-full'
                 id='password'
               />
               <label className='block  text-black text-xs ' htmlFor='password'>Password</label>
@@ -91,20 +101,34 @@ const Page = () => {
                   onChange={e => {
                     setPassword(e.target.value)
                   }}
-                  className='outline-none text-xs  rounded-sm bg-[#DDDEE7] text-black w-[90%] p-2'
+                  className='outline-none text-xs  rounded-sm bg-[#E9EAF2] text-black w-[90%] p-2'
                   id='password'
                   type={passwordHidden ? 'password' : 'text'}
                 />
 
                 <span className="w-max  " onClick={() => setPasswordHidden(!passwordHidden)}>  {passwordHidden ? <Image className="inline" src='/eye.svg' alt="" width={20} height={20} /> : <Image alt="" className="inline" src='/eyeclose.svg' width={20} height={20} />}  </span>
               </div>
-              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => checkPasswordWithEmail} >
-                Log in
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-lg text-center font-bold cursor-pointer' onClick={async () => { if (passwordEmailState === 'initial') { await checkPasswordWithEmail(); } }} >
+                {passwordEmailState === 'initial' ? 'Log in' : passwordEmailState === 'loading' ? 'Loading...' : 'Logged in successfully'}
               </div>
-              <div className="text-center text-lg"> OR </div>
-              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToEmail}   > Login using   OTP </div>
+              <div className="text-center text-lg font-bold"> OR </div>
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-lg text-center font-bold cursor-pointer' onClick={async () => { if (otpEmailState === 'initial') { await sendOtpToEmail(); } }}>
+                {otpEmailState === 'initial' ? 'Send OTP for verfication' : otpEmailState === 'loading' ? 'Loading...' : otpEmailState === 'success' ?
+                  <div className="flex flex-col  gap-2  ">  <input type='text' value={otp} onChange={(e) => setOtp(e.target.value)} className="block   outline-none  text-xl  text-black text-center rounded-md  " /> <button
+                    onClick={
+                      async () => {
+                        setOtpEmailState('loading'); const res = await axios.post('/api/auth/checkOTP', { otp }).then(res => res.data);
+                        if (!res.success) {
+                          setIsError(res.msg);
+                          setOtpEmailState('success');
+                        }
+                        setOtpEmailState('done');
+                        router.push('/new');
+                      }} className="bg-white text-black font-bold   text-xl rounded-2xl mx-[100px] " > Submit   </button>  </div> : 'Logged in successfuly'}
+              </div>
             </div>
-            <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer' onClick={() => setMode('phone')}  >  Login using phone number    </div>
+
+            <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-sm text-center font-bold cursor-pointer' onClick={() => setMode('email')}  >  Login using phone number    </div>
           </>
             :
             <>   <div className='flex flex-col gap-2'>
@@ -126,7 +150,7 @@ const Page = () => {
                   onChange={e => {
                     setPassword(e.target.value)
                   }}
-                  className='outline-none text-xs  rounded-sm bg-[#DDDEE7] text-black w-[90%] p-2'
+                  className=' outline-none text-xs  rounded-sm bg-[#DDDEE7] text-black w-[90%] p-2'
                   id='password'
                   type={passwordHidden ? 'password' : 'text'}
                 />
@@ -137,7 +161,7 @@ const Page = () => {
                 Log in
               </div>
               <div className="text-center text-lg"> OR </div>
-              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToPhone}   > Login using   OTP </div>
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB] hover:bg-[#6581EC] text-sm text-center font-bold cursor-pointer' onClick={() => sendOtpToPhone}   >  Login using   OTP </div>
             </div>
               <div className=' text-white  px-4 py-2 rounded-md w-full bg-[#5826EB]  text-sm text-center font-bold cursor-pointer ' onClick={() => { setMode('email') }} >  Login using email    </div>
 

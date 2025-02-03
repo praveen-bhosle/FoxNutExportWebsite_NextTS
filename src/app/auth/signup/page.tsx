@@ -10,6 +10,7 @@ import Link from 'next/link'
 
 
 import OTP from '@/app/app/components/otp'
+import { useRouter } from 'next/navigation'
 
 
 const Page = () => {
@@ -52,6 +53,7 @@ const Page = () => {
   const hasNumber = (str: string) => /[0-9]/.test(str);
   const hasSpecialCharacter = (str: string) => /[^a-zA-Z0-9\s]/.test(str);
 
+  const router = useRouter();
 
   if (mode === 'email' && globalState !== 'signedUp') {
     return (
@@ -60,8 +62,8 @@ const Page = () => {
 
           <div className=' rounded-xl p-2  bg-[#E9EAF2] flex flex-col gap-16 justify-between  '>
             <div className=''>
-              <div className='text-2xl font-semibold text-black text-center'>
-                Welcome to <span className='text-[#3F6EEA]'>YKDevoutExports</span>
+              <div className='text-2xl font-semibold text-black text-center cursor-pointer ' onClick={() => router.replace('/new')} >
+                Welcome to YKDevoutExports
               </div>
 
               <div className='text-xs font-bold text-center '>

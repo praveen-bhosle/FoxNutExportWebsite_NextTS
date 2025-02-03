@@ -5,6 +5,8 @@ import { encryptCredentials } from '@/app/app/lib/session'
 
 import { user } from '../../../app/layout'
 
+import { NextResponse } from 'next/server'
+
 interface sampleUser {
   id: number
   email: string | null | undefined
@@ -25,17 +27,6 @@ interface sampleProfile {
 }
 
 const prisma = new PrismaClient()
-
-export function OPTIONS (request: Request) {
-  return new Response(JSON.stringify({ status: 'OK' }), {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-    }
-  })
-}
 
 export async function GET () {
   const cookieStore = await cookies()
@@ -68,14 +59,12 @@ export async function GET () {
         })
 
         if (!user) {
-          return new Response(JSON.stringify({ loggedIn: false }), {
-            status: 200,
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-              'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+          return NextResponse.json(
+            { loggedIn: false },
+            {
+              status: 200
             }
-          })
+          )
         }
 
         const user2: user = { loggedIn: false }
@@ -94,13 +83,8 @@ export async function GET () {
 
         if (!profile) {
           user2.profileCreated = false
-          return new Response(JSON.stringify(user2), {
-            status: 200,
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-              'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-            }
+          return NextResponse.json(user2, {
+            status: 200
           })
         } else {
           const profile2: sampleProfile = { ...profile }
@@ -108,35 +92,31 @@ export async function GET () {
           user2.profileCreated = true
           Object.assign(user2, profile2)
 
-          return new Response(JSON.stringify(user2), {
-            status: 200,
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-              'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-            }
+          return NextResponse.json(user2, {
+            status: 200
           })
         }
+      } else {
+        return NextResponse.json(
+          { success: false, msg: 'invalid cookie' },
+          { status: 200 }
+        )
       }
     } catch (e) {
       console.log('Error is' + e)
-      return new Response(JSON.stringify({ loggedIn: false }), {
-        status: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      return NextResponse.json(
+        { loggedIn: false },
+        {
+          status: 200
         }
-      })
+      )
     }
   } else {
-    return new Response(JSON.stringify({ loggedIn: false }), {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    return NextResponse.json(
+      { loggedIn: false },
+      {
+        status: 200
       }
-    })
+    )
   }
 }

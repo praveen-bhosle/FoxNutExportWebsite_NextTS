@@ -24,17 +24,23 @@ export async function POST (request: Request) {
       })
 
       if (!user) {
-        return NextResponse.json({
-          success: 'false',
-          msg: 'email not registered.'
-        })
+        return NextResponse.json(
+          {
+            success: false,
+            msg: 'email not registered.'
+          },
+          { status: 200 }
+        )
       }
 
       if (!user.password) {
-        return NextResponse.json({
-          success: 'false',
-          msg: 'Password is not set for the email id.'
-        })
+        return NextResponse.json(
+          {
+            success: false,
+            msg: 'Password is not set for the email id.'
+          },
+          { status: 200 }
+        )
       }
 
       const compare = await bcrypt.compare(
@@ -43,14 +49,17 @@ export async function POST (request: Request) {
       ) // returns true or false.
 
       if (!compare) {
-        return NextResponse.json({
-          success: 'false',
-          msg: 'incorrect password'
-        })
+        return NextResponse.json(
+          {
+            success: false,
+            msg: 'incorrect password'
+          },
+          { status: 200 }
+        )
       }
 
       const sessionObject = encrypt(
-        { userId: user.id },
+        { id: user.id },
         encryptCredentials.key,
         encryptCredentials.iv
       )
@@ -61,7 +70,7 @@ export async function POST (request: Request) {
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         sameSite: 'lax'
       })
-      return NextResponse.redirect('/')
+      return NextResponse.json({ success: true }, { status: 200 })
     } else {
       const user = await prisma.user.findUnique({
         where: {
@@ -70,17 +79,23 @@ export async function POST (request: Request) {
       })
 
       if (!user) {
-        return NextResponse.json({
-          success: 'false',
-          msg: 'Phone not registered.'
-        })
+        return NextResponse.json(
+          {
+            success: false,
+            msg: 'Phone not registered.'
+          },
+          { status: 200 }
+        )
       }
 
       if (!user.password) {
-        return NextResponse.json({
-          success: 'false',
-          msg: 'Password is not set for the contact number.'
-        })
+        return NextResponse.json(
+          {
+            success: false,
+            msg: 'Password is not set for the contact number.'
+          },
+          { status: 200 }
+        )
       }
 
       const compare = await bcrypt.compare(
@@ -89,14 +104,17 @@ export async function POST (request: Request) {
       ) // returns true or false.
 
       if (!compare) {
-        return NextResponse.json({
-          success: 'false',
-          msg: 'incorrect password'
-        })
+        return NextResponse.json(
+          {
+            success: false,
+            msg: 'incorrect password'
+          },
+          { status: 200 }
+        )
       }
 
       const sessionObject = encrypt(
-        { userId: user.id },
+        { id: user.id },
         encryptCredentials.key,
         encryptCredentials.iv
       )
@@ -112,7 +130,7 @@ export async function POST (request: Request) {
   } catch (e) {
     console.log(`error is ${e}`)
     return NextResponse.json(
-      { success: 'false', message: `internal server error. ${e}` },
+      { success: false, message: `internal server error. ${e}` },
       { status: 500 }
     )
   }
