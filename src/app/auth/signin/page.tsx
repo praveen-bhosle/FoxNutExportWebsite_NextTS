@@ -57,11 +57,13 @@ const Page = () => {
         return;
       }
       setOtpEmailState('success');
-      router.replace('/new');
+      setIsError('');
+
     }
     catch (e) {
       console.log(e);
       setIsError(JSON.stringify(e));
+      setOtpEmailState('initial');
     }
   }
 
