@@ -108,11 +108,11 @@ const Page = () => {
 
                 <span className="w-max  " onClick={() => setPasswordHidden(!passwordHidden)}>  {passwordHidden ? <Image className="inline" src='/eye.svg' alt="" width={20} height={20} /> : <Image alt="" className="inline" src='/eyeclose.svg' width={20} height={20} />}  </span>
               </div>
-              <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-lg text-center font-bold cursor-pointer' onClick={async () => { if (passwordEmailState === 'initial') { await checkPasswordWithEmail(); } }} >
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-lg text-center font-bold cursor-pointer' onClick={async () => { if (!email || !password) { setIsError('Fill out the credentials first') } else if (passwordEmailState === 'initial') { await checkPasswordWithEmail(); } }} >
                 {passwordEmailState === 'initial' ? 'Log in' : passwordEmailState === 'loading' ? 'Loading...' : 'Logged in successfully'}
               </div>
               <div className="text-center text-lg font-bold"> OR </div>
-              <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-lg text-center font-bold cursor-pointer' onClick={async () => { if (otpEmailState === 'initial') { await sendOtpToEmail(); } }}>
+              <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-lg text-center font-bold cursor-pointer' onClick={async () => { if (!email) { setIsError('Enter the email first') } else if (otpEmailState === 'initial') { await sendOtpToEmail(); } }}>
                 {otpEmailState === 'initial' ? 'Send OTP for verfication' : otpEmailState === 'loading' ? 'Loading...' : otpEmailState === 'success' ?
                   <div className="flex flex-col  gap-2  ">  <input type='text' value={otp} onChange={(e) => setOtp(e.target.value)} className="block   outline-none  text-xl  text-black text-center rounded-md  " /> <button
                     onClick={
@@ -121,6 +121,7 @@ const Page = () => {
                         if (!res.success) {
                           setIsError(res.msg);
                           setOtpEmailState('success');
+                          return;
                         }
                         setOtpEmailState('done');
                         router.push('/new');
