@@ -1,6 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import type { Viewport } from 'next'
+import { GoogleOAuthProvider } from '@react-oauth/google'
+
+
 
 export const metadata: Metadata = {
   title: 'YK Devout Exports',
@@ -22,9 +25,16 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='bg-[#FAFAFA] text-custom-text'>
-        <div className='' >
-          {children}
-        </div>
+        {process.env.GOOGLE_CLIENT_ID ?
+          <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
+            <div className='' >
+              {children}
+            </div>
+          </GoogleOAuthProvider> :
+          <div className='' >
+            {children}
+          </div>
+        }
       </body>
     </html>
   )

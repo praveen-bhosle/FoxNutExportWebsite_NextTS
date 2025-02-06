@@ -3,28 +3,34 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import axios from 'axios';
+import { useStore } from '../app/layout';
+import { useGoogleLogin } from '@react-oauth/google';
 
 const Header = () => {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const user = useStore((state) => state.user);
+
+  const setUser = useStore((state) => state.setUser);
+
+
+  useEffect(() => { if (user) { axios.get } }, [user])
+
 
   useEffect(() => {
     const checkLoggedIn = async () => {
       try {
         const res = await axios.get('/api/auth/checkLogged').then(res => res.data);
         if (res.loggedIn) {
-          setLoggedIn(true);
+          setUser({ loggedIn: true });
         }
       }
       catch (e) {
         console.log(e);
       }
-      console.log(loggedIn);
     };
-
-
     checkLoggedIn();
-  }, [loggedIn])
+  }, [user])
+
   return (
     <div className='bg-white  flex justify-between w-full fixed top-0 left-0'>
       <Link href='/' >
@@ -32,13 +38,13 @@ const Header = () => {
       </Link>
       <div className='flex gap-4 py-2 px-4'>
         {
-          loggedIn ?
+          user.loggedIn ?
 
             <>
               <Link href='/app/profile'> <Image src='/profile.svg' alt='' width={40} height={40} />  </Link>
               <button onClick={async () => {
                 await axios.put(`/api/auth/signout`);
-                setLoggedIn(false);
+                setUser({ loggedIn: false });
               }} > Log out </button> </>
             :
             <>

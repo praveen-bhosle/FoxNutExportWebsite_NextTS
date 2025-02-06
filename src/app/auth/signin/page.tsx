@@ -58,7 +58,6 @@ const Page = () => {
       }
       setOtpEmailState('success');
       setIsError('');
-
     }
     catch (e) {
       console.log(e);

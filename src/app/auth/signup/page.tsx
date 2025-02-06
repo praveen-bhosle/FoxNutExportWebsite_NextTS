@@ -2,15 +2,11 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-
 import Image from 'next/image'
-
-
 import Link from 'next/link'
-
-
 import OTP from '@/app/app/components/otp'
 import { useRouter } from 'next/navigation'
+import { GoogleLogin } from '@react-oauth/google'
 
 
 const Page = () => {
@@ -54,6 +50,24 @@ const Page = () => {
   const hasSpecialCharacter = (str: string) => /[^a-zA-Z0-9\s]/.test(str);
 
   const router = useRouter();
+
+  const googleLoginSuccess = async () => {
+
+
+
+    const res = await axios.get('https://www.googleapis.com/oauth2/v1/userinfo').then()
+
+    setIsError('Logged in successfully to google.');
+
+    router.replace('/new');
+  }
+
+  const googleLoginFailed = () => {
+    setIsError('Failed to log in');
+  }
+
+  const googleLoginClicked = () => { }
+
 
   if (mode === 'email' && globalState !== 'signedUp') {
     return (
@@ -125,6 +139,7 @@ const Page = () => {
 
 
               <Link className='  bg-[#5826EB] w-full text-white py-2 px-4 text-sm rounded-md text-center font-bold  cursor-pointer opacity-0' href={'/'}   >    Sign up with phone instead     </Link>
+              <GoogleLogin onSuccess={googleLoginSuccess} onError={googleLoginFailed} click_listener={googleLoginClicked} />
             </>
 
 

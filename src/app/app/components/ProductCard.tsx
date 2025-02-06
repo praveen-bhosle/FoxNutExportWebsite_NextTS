@@ -15,16 +15,15 @@ const ProductCard = ({ element }: { element: Product }) => {
   const router = useRouter();
 
   return (
-    <div className='bg-white  p-[1px]   rounded-sm    text-black cursor-pointer  h-[30vh] border-[1px]' onClick={() => router.replace(`/app/product?productId=${element.productId}`)}>
-      <div className=' flex flex-col  h-[100%] p-2'>
+    <div className='bg-white  p-[1px]   rounded-sm    text-black cursor-pointer  h-[30vh]  border-[1px]' onClick={() => router.replace(`/app/product?productId=${element.productId}`)}>
+      <div className=' flex flex-col  h-[100%] p-2 '>
         <div className='font-bold text-sm h-[20%]'>
           <span className='text-md  block'> {element.sizeStringA} </span>
-
           <span className='text-md  block'> {element.sizeStringB} </span>
         </div>
 
-        <div className=' flex justify-center h-[55%] w-[100%]'>
-          <Image src={element.image} alt='' height={20} width={100} quality={100} />
+        <div className=' flex justify-center h-[55%]  w-[100%] border-black border-2'>
+          <Image src={element.image} alt='' height={100} width={400} quality={100} className='border-black border-2' />
         </div>
 
         <div className=' h-[25%]'>

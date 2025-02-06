@@ -62,13 +62,9 @@ const CartItem = ({
               </button>
             </div>
 
-            <button
-              onClick={() => {
-                removeFromCart(product.productId)
-              }}
-              className='block'
-            >
+            <button onClick={() => { removeFromCart(product.productId) }} className='block'>
               <Image src='/delete.svg' width={25} height={25} alt='image' />
+
             </button>
           </div>
         </div>

@@ -1,14 +1,18 @@
 'use client'
 import Header from "./Header";
 import Footer from "./Footer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useStore } from "../app/layout";
+
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
     const [i, setI] = useState(0);
 
     const interval = setInterval(() => { if (i < 1) setI(i => i + 1); clearInterval(interval); }, 500);
+
 
     return (
         <>

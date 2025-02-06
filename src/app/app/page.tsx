@@ -59,7 +59,7 @@ const PageBar = () => {
             <div className=''> Machine-Handpicked </div> </button>
         </div>
         <div className='mt-2 flex flex-col gap-2 '>
-          <div className='grid grid-cols-2 gap-2 '>
+          <div className='grid grid-cols-2 gap-2 md:grid-cols-3  lg:grid-cols-4  xl:grid-cols-5'>
             {
               Products.map((element, index) =>
                 element.quality == current &&

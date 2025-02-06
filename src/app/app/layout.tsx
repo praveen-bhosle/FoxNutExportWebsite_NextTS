@@ -29,6 +29,7 @@ export interface user {
   state?: string | null
   country?: string | null
   zipcode?: string | null
+  profileImageString?: string | null
 }
 
 type Store = {
