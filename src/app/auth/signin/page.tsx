@@ -7,8 +7,6 @@ import url from "@/app/url";
 import Image from "next/image";
 import { useRouter, } from "next/navigation";
 
-import { SignIn, SignInButton } from "@clerk/nextjs";
-
 
 
 const Page = () => {
@@ -137,7 +135,6 @@ const Page = () => {
               </div>
             </div>
             <div className=' text-white  px-4 py-2 rounded-md w-full bg-black  text-sm text-center font-bold cursor-pointer opacity-0' onClick={() => setMode('email')}  >  Login using phone number    </div>
-            <div className=' text-white  px-4 py-2 rounded-md mx-[26%]  bg-black  text-sm text-center font-bold' >   <SignInButton>   Login using google   </SignInButton>      </div>
           </>
             :
             <>   <div className='flex flex-col gap-2'>
