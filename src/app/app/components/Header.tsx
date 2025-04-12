@@ -22,7 +22,6 @@ const Header = () => {
 
   const setUser = useStore(state => state.setUser);
 
-  console.log(products);
 
 
   const total = products
@@ -78,8 +77,8 @@ const Header = () => {
 
 
   return (
-    <div className='border  w-full fixed  bg-white  top-[0px] left-[0px] '>
-      <div className='flex justify-between  mb-2  align-center mx-4 mt-[9px] h-[30px]     '>
+    <div className='border  w-full fixed  bg-white  top-[0px] left-[0px] z-10'>
+      <div className='flex justify-between  mb-2  align-center mx-4 mt-[9px] h-[30px] '>
         <div className='flex  gap-4  border-2 border-white'>
           {user.loggedIn ?
             <button className=' rounded-[25px]  overflow-hidden' onClick={
@@ -175,7 +174,7 @@ const Header = () => {
             </button>
           </div>
 
-          <div>
+          <div className='grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4'>
             {products.map((product, index) => {
               if (product.quantityAdded > 0) {
                 const p1 = product.price.slice(4)

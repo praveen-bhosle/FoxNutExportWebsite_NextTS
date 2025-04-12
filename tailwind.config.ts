@@ -14,7 +14,15 @@ export default {
         'custom-subheading':'#2C2C2C' , 
         'custom-bg':'#FAFAFA' ,
         'custom-hover':'#EFEDEC'
-      },
+      }, 
+      boxShadow : { 
+      custom: '0px 0px 4px 2px rgba(0,0,0,0.2)' , 
+      hoverCustom : '0px 0px 4px 3px rgba(0,0,0,0.2)'
+      } , 
+      zIndex  : { 
+        'auto' : 'auto' , 
+        'n2' : '-2'  
+      }
     },
   },
   plugins: [],

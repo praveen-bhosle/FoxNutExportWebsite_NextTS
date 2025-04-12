@@ -22,7 +22,7 @@ const Footer = () => {
           <div className='text-xl font-bold'> Contact Us </div>
           <div ><Image src='/call.svg' alt='image' width={20} height={20} className='inline' /> +917899255947   </div>
           <div className='text-sm font-bold' > <Image src='/mail.svg' alt='image' width={20} height={20} className='inline' /> guruprasadkulkarni@ykdevoutexports.com  </div>
-          <div > <Image src='/location.svg' alt='image' width={20} height={20} className='inline' />  Rajendra Nagar, Madhubani Purnea, Purnea, Purnea, Purnia- 854301, Bihar, India  </div>
+          <div > <Image src='/location.svg' alt='image' width={20} height={20} className='inline' />  Rajendra Nagar, Madhubani Purnia , Purnia- 854301, Bihar, India  </div>
         </div>
       </div>
 

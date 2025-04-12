@@ -4,8 +4,7 @@ import React, { Suspense, useState } from 'react'
 import Products from './lib/Products'
 import ProductCard from './components/ProductCard'
 import { useSearchParams } from 'next/navigation'
-import axios from 'axios'
-import url from '../url'
+
 
 
 const PageBar = () => {
@@ -36,14 +35,14 @@ const PageBar = () => {
       <div className=' py-2 px-2' >
         <div className='text-lg flex justify-center gap-2 bg-white  w-full px-2 '>
 
-          <button className='rounded-2xl px-2 py-[2px] text-xs border-2' style={{
+          <button className='rounded-2xl px-2 py-[2px] text-xs border-2 ' style={{
             background: current === 'Handpicked' ? 'white' : 'black', color: current === 'Handpicked' ? 'black' : 'white'
           }} onClick={() => { setCurrent('Handpicked') }}    >
             <div className='text-4xl text-center font-bold'> H </div>
             <div className=''> Handpicked </div>
           </button>
 
-          <button className='rounded-2xl border-2 px-2 py-[2px] text-xs'
+          <button className='rounded-2xl border-2 px-2 py-[2px] text-xs  '
             style={{
               background: current === 'Semi Handpicked' ? 'white' : 'black', color: current === 'Semi Handpicked' ? 'black' : 'white'
             }}
@@ -56,20 +55,20 @@ const PageBar = () => {
             style={{ background: current === 'Without Handpicked' ? 'white' : 'black', color: current === 'Without Handpicked' ? 'black' : 'white' }}
             onClick={() => { setCurrent('Without Handpicked') }} >
             <div className='text-4xl text-center font-bold'> MH </div>
-            <div className=''> Machine-Handpicked </div> </button>
+            <div className=''> Machine-Picked </div> </button>
         </div>
-        <div className='mt-2 flex flex-col gap-2 '>
-          <div className='grid grid-cols-2 gap-2 '>
-            {
-              Products.map((element, index) =>
-                element.quality == current &&
-                (<ProductCard key={index} element={element} />)
-              )
-            }
-          </div>
 
+        <div className='grid grid-cols-2 gap-2 mt-2 sm:grid-cols-3   md:grid-cols-3 xl:grid-cols-4  '>
+          {
+            Products.map((element, index) =>
+              element.quality == current &&
+              (<ProductCard key={index} element={element} />)
+            )
+          }
         </div>
+
       </div>
+
     </>
   )
 }

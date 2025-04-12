@@ -6,6 +6,7 @@ import { NextResponse, NextRequest } from 'next/server'
 const prisma = new PrismaClient()
 
 import { encryptCredentials } from '@/app/app/lib/session'
+import { json } from 'stream/consumers'
 
 export function OPTIONS (request: Request) {
   return new Response(JSON.stringify({ status: 'OK' }), {
@@ -78,7 +79,7 @@ export async function POST (req: NextRequest) {
       }
     )
   } catch (e) {
-    console.log(e)
+    console.log(JSON.stringify(e))
     return new Response(
       JSON.stringify({ success: 'false', msg: 'internal server error' }),
       {
@@ -89,5 +90,9 @@ export async function POST (req: NextRequest) {
         }
       }
     )
+  } finally {
+    ;async () => {
+      await prisma.$disconnect()
+    }
   }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Product } from '../lib//Products'
 import Image from 'next/image'
 import { useStore } from '../layout'
+import ProductCard2 from './ProductCard2'
 
 const CartItem = ({
   product,
@@ -19,11 +20,13 @@ const CartItem = ({
   const p3_ = p3 * product.quantityAdded
   const p4 = p3_.toFixed(2)
 
+  console.log(product)
+
   return (
     <>
-      <div className='flex my-2 '>
-        <div className=''>
-          <Image src={product.image} width={150} height={150} alt='image' />
+      <div className='flex my-2'>
+        <div className='w-[100px]'>
+          <ProductCard2 element={product} />
         </div>
 
         <div className=' p-2 w-[300px] '>
@@ -73,7 +76,7 @@ const CartItem = ({
           </div>
         </div>
       </div>
-      <hr />
+
     </>
   )
 }

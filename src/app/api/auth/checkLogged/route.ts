@@ -31,10 +31,8 @@ const prisma = new PrismaClient()
 export async function GET () {
   const cookieStore = await cookies()
   const sessionCookie = cookieStore.get('session')
-  console.log(sessionCookie)
 
   console.log(encryptCredentials.iv.length)
-  console.log(encryptCredentials.key.length)
 
   if (sessionCookie) {
     console.log(sessionCookie.value)
@@ -43,8 +41,6 @@ export async function GET () {
       encryptCredentials.key,
       encryptCredentials.iv
     )
-
-    console.log(decrypted)
 
     const decryptedParsed = JSON.parse(decrypted)
 
