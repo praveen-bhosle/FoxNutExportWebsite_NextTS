@@ -20,4 +20,4 @@ echo  "@font-face{font-family:"revicons";fallback:fallback;src:url("./revicons.w
 .rtl.react-multiple-carousel__arrow--right::before{content:"\e824"}
 .rtl.react-multiple-carousel__arrow--left{left:auto;right:calc(4% + 1px)}
 .rtl.react-multiple-carousel__arrow--left::before{content:"\e825"} 
-.carousel-container {  z-index: 0   }" > /node_modules/react-multi-carousel/lib/styles.css
+.carousel-container {  z-index: 0   }" > ./node_modules/react-multi-carousel/lib/styles.css
