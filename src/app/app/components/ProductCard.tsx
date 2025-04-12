@@ -59,7 +59,7 @@ const ProductCard = ({ element }: { element: Product }) => {
           containerClass="carousel-container"
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
-          className='carousel-container'
+          className='carousel-container z-0'
         >
           {element.image.map((e, index) =>
             <div key={index}>   <Image src={e} alt='' width={0} height={0} sizes="100vw" className='w-full h-auto rounded-[5px]  ' quality={100} /></div>
